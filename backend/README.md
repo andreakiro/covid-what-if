@@ -2,9 +2,9 @@
 
 In the project directory, you can run:
 
-### Virtual environement
+### `pipenv shell`
 
-Run `pipenv shell` to activate the virtual environment and access all the dependencies you need to run the server.
+Run the virtual environment to have access to all the dependencies.
 
 ### `FLASK_APP=api.py flask run`
 
