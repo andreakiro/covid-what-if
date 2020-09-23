@@ -6,6 +6,10 @@ In the project directory, you can run:
 
 Run the virtual environment to have access to all the dependencies.
 
+### `exit`
+
+Exit the virtual environment and reach back your shell.
+
 ### `FLASK_APP=api.py flask run`
 
 Runs the Flask server<br />

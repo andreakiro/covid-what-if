@@ -57,8 +57,9 @@ function BoxIntelligente(props) {
   useEffect(() => {foo()}, [box1, box2])
   
   let foo = async () => {
-    if (box1 === '' || box2 === '') return
-    else {
+    // if (box1 === '' || box2 === '') 
+    if (box1 === '') box1 = 0;
+    if (box2 === '') box2 = 0;
       // faire l appel et modifier la page
       // utiliser le .then pour quand c est fini dire que cest fini
       // update les trucs
@@ -70,7 +71,7 @@ function BoxIntelligente(props) {
 
       // facon alternative
       // API(box1, box1).then(r => { setResult(r); setLoading(false); } );
-    }
+    
   };
   return (
     <div className="Counter">
