@@ -7,7 +7,6 @@ CORS(app)
 
 @app.route('/', methods=['POST'])
 def hello_world():
-    # print(request.json)
     body = request.json
     a = int(body['a'])
     b = int(body['b'])
