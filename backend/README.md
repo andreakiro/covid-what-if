@@ -42,11 +42,11 @@ Exit the virtual environment and reach back your shell.
 Runs the Flask server <br />
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
 
-# Collaborators
+# Contributions
 
-Developper and ML engineer `Andrea Pinto`
-Epidemiology and ML engineer `Thierry Bossy`
-Digital social epidemiology and ML engineer `Lucas Massemin`
+Developper and ML engineer `Andrea Pinto` <br>
+Epidemiology and ML engineer `Thierry Bossy` <br>
+Digital social epidemiology and ML engineer `Lucas Massemin` <br>
 
 # Contributions
 
