@@ -13,7 +13,7 @@ Structure requests should have to be processed in the backend.
 }
 ```
 
-Where `id` can be one of the following: <br
+Where `id` can be one of the following: <br>
 * i don't know yet
 
 `function` and `args`are simply the function you'd like to call on the required model with some given arguments. <br>
