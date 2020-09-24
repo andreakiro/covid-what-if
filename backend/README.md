@@ -25,7 +25,7 @@ Where we store static files.
 
 You can find any usefull documentation and other informations in this directory.
 
-# Contributions
+# Python server
 
 In the directory, you can run:
 
