@@ -1,4 +1,3 @@
-from models.sum import sum
 from flask import Flask, request
 from flask_cors import CORS
 
