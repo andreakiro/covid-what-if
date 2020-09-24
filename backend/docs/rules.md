@@ -6,8 +6,15 @@ Structure requests should have to be processed in the backend.
         "id": "id",
         "function": "f(x)",
         "args": {
-            "arg1": "val1",
-            "arg2": "val2"
+            "policies": {
+                "pol1": array (à mettre en string),
+                "pol2": ...
+            },
+            "demographics": {
+                "gdp": "val",
+                "density": "val",
+                ...
+            }
         }
     }
 }
