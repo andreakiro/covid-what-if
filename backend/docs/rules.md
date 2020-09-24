@@ -30,7 +30,7 @@ Structure requests should have to be processed in the backend.
 ```
 
 Where `id` can be one of the following: <br>
-* Hybrid LSTM-MLP ID = 1
+* Hybrid between long-short term memory and multi-layer perceptron models `ID = 1`
 
 `function` is the function you'd like to call on the required model with some given arguments. <br>
 You should find documentation for every functions directly in the models files.
