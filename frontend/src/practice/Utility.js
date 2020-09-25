@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from "react";
-
 export async function API(a, b) {
   let request = {
     method: "POST",
