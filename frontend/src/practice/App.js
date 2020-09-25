@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import Graph from "./components/Graph";
 import Layout from "./components/Layout";
-import Box from "./components/Box"
+import Strength from "./components/Strenght";
 
 function App() {
   return (
     <>
       <Layout>
-        {/* <Graph /> */}
-        <Box />
+        <Graph />
+        <Strength />
       </Layout>
     </>
   );

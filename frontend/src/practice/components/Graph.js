@@ -1,7 +1,7 @@
 import React from "react";
 import * as d3 from "d3";
 
-export function Graph() {
+export default function Graph() {
   const ref = React.useRef(null);
 
   const margin = {
