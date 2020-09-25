@@ -4,9 +4,11 @@ import Footer from './Footer.js'
 
 export default function Layout(props) {
     return (
-        <div>
+        <div className="w-full space-y-4 h-full flex flex-col">
             <Nav/>
-            {props.children}
+            <div className="flex flex-col items-center w-full flex-grow">
+                {props.children}
+            </div>
             <Footer/>
         </div>
     );
