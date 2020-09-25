@@ -1,15 +1,63 @@
-import React from 'react';
+import React from "react";
 
 export default function Nav() {
   return (
-    <div className="px-4 md:px-8 lg:px-32 bg-indigo-400 text-3xl">
-      <nav className="flex items-center justify-between py-2">
-        <div className="flex items-center lg:w-1/2">
-          <div className="flex items-center">
-          <div className="hidden mx-4 sm:block text-white font-bold">What if ?</div>
+    <div>
+      <nav class="bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between h-16">
+            <div class="flex items-center">
+              <div class="flex-shrink-0">
+                <img
+                  class="h-8 w-8"
+                  src="https://tailwindui.com/img/logos/workflow-mark-on-dark.svg"
+                  alt="Workflow logo"
+                />
+              </div>
+              <div class="hidden md:block">
+                <div class="ml-10 flex items-baseline space-x-4">
+                  <a
+                    href="#"
+                    class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700"
+                  >
+                    Dashboard
+                  </a>
+                  <a
+                    href="#"
+                    class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+                  >
+                    Team
+                  </a>
+                  <a
+                    href="#"
+                    class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+                  >
+                    Projects
+                  </a>
+                  <a
+                    href="#"
+                    class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+                  >
+                    Reports
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="hidden md:block">
+              <div class="ml-4 flex items-center md:ml-6">
+                <p class="px-3 py-2 rounded-md text-sm font-medium text-gray-300">
+                  Covid what if ? By{" "}
+                  <a
+                    href="https://www.epfl.ch/labs/mlo/igh-intelligent-global-health/"
+                    class="hover:text-white hover:font-bold"
+                  >
+                    IGH EPFL
+                  </a>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="hidden mx-4 sm:block text-white font-bold">More</div>
       </nav>
     </div>
   );
