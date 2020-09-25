@@ -21,18 +21,7 @@ export function Graph() {
       .select(ref.current)
       .append("g")
       .attr("transform", `translate(${margin.left}, ${margin.top})`);
-
-    // const data = [
-    //   ["2013-04-28", 35],
-    //   ["2014-04-29", 47],
-    //   ["2015-04-30", 146],
-    //   ["2016-05-01", 139],
-    //   ["2017-05-02", 125],
-    //   ["2018-05-03", 10],
-    //   ["2019-05-04", 115],
-    //   ["2020-05-05", 200],
-    // ].map((d) => ({ date: d3.timeParse("%Y-%m-%d")(d[0]), value: d[1] }));
-
+      
     d3.csv(
       "https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/3_TwoNumOrdered_comma.csv",
       (d) => ({ date: d3.timeParse("%Y-%m-%d")(d.date), value: d.value })).then(
