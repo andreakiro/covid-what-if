@@ -7,11 +7,21 @@ export default function Box(props) {
   let [loading, setLoading] = useState(false);
   let [result, setResult] = useState(0);
   let foo = async () => {
+    let empty = false;
+    if (box1 === "" || box2 === "") {
+      empty = true;
+      if (box1 === "") box1 = 0;
+      if (box2 === "") box2 = 0;
+    }
     setLoading(true);
     let r = await API(box1, box2);
     await timeout(100);
     setResult(r);
     setLoading(false);
+    if (empty) {
+      if (box1 === 0) setBox1(0);
+      if (box2 === 0) setBox2(0);
+    }
   };
   return (
     <div className="flex flex-col space-y-4 w-32">
