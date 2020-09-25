@@ -22,57 +22,58 @@ export function Graph() {
       .append("g")
       .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-    const data = [
-      ["2013-04-28", 35],
-      ["2014-04-29", 47],
-      ["2015-04-30", 146],
-      ["2016-05-01", 139],
-      ["2017-05-02", 125],
-      ["2018-05-03", 10],
-      ["2019-05-04", 115],
-      ["2020-05-05", 200],
-    ].map((d) => ({ date: d3.timeParse("%Y-%m-%d")(d[0]), value: d[1] }));
+    // const data = [
+    //   ["2013-04-28", 35],
+    //   ["2014-04-29", 47],
+    //   ["2015-04-30", 146],
+    //   ["2016-05-01", 139],
+    //   ["2017-05-02", 125],
+    //   ["2018-05-03", 10],
+    //   ["2019-05-04", 115],
+    //   ["2020-05-05", 200],
+    // ].map((d) => ({ date: d3.timeParse("%Y-%m-%d")(d[0]), value: d[1] }));
 
-    // d3.csv(
-    //   "https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/3_TwoNumOrdered_comma.csv",
-    //   (d) => ({ date: d3.timeParse("%Y-%m-%d")(d.date), value: d.value }),
-    //   (data) => {
+    d3.csv(
+      "https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/3_TwoNumOrdered_comma.csv",
+      (d) => ({ date: d3.timeParse("%Y-%m-%d")(d.date), value: d.value })).then(
+      (data) => {
+        console.log(data);
+          
+        // x axis
+        const x = d3
+          .scaleTime()
+          .domain(d3.extent(data, (d) => d.date))
+          .range([0, width]);
 
-    // x axis
-    const x = d3
-      .scaleTime()
-      .domain(d3.extent(data, (d) => d.date))
-      .range([0, width]);
+        svg
+          .append("g")
+          .attr("transform", `translate(0, ${height})`)
+          .call(d3.axisBottom(x));
 
-    svg
-      .append("g")
-      .attr("transform", `translate(0, ${height})`)
-      .call(d3.axisBottom(x));
+        // y axis
+        const y = d3
+          .scaleLinear()
+          .domain([0, d3.max(data, (d) => +d.value)])
+          .range([height, 0]);
 
-    // y axis
-    const y = d3
-      .scaleLinear()
-      .domain([0, d3.max(data, (d) => +d.value)])
-      .range([height, 0]);
+        svg.append("g").call(d3.axisLeft(y));
 
-    svg.append("g").call(d3.axisLeft(y));
+        // add the  line
 
-    // add the  line
-    svg
-      .append("path")
-      .datum(data)
-      .attr("fill", "none")
-      .attr("stroke", "steelblue")
-      .attr("stroke-width", 1.5)
-      .attr(
-        "d",
-        d3
+        const line = d3
           .line()
-          .x((d) => d.date)
-          .y((d) => d.value)
-      );
-    //   }
-    // );
+          .x((d) => x(d.date))
+          .y((d) => y(d.value));
+
+        svg
+          .append("path")
+          .datum(data)
+          .attr("fill", "none")
+          .attr("stroke", "steelblue")
+          .attr("stroke-width", 1.5)
+          .attr("d", line);
+      }
+    );
   }, [ref]);
 
   return (
