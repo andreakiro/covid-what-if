@@ -1,4 +1,4 @@
-# Frontend structure
+# Frontend structure
 
 Run with React.js, D3.js, and tailwind.js.
 
@@ -45,4 +45,4 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ### Installing dependencies
 
-#### `npm install tailwindcss postcss-cli autoprefixer -D`
+`npm install tailwindcss postcss-cli autoprefixer -D`
