@@ -7,13 +7,10 @@ The project is held by the Inteligent Global Health group of the MLO lab at EPFL
 
 #### `bash script.sh`
 
-Use this command to start all the servers. <br>
+Use this command to start all the servers. Note that you need to have the CLI ttab.
+If you have Node.js installed, just run `npm install -g ttab` <br>
 
-You need to have the CLI ttab. If you have Node.js installed, just run `npm install -g ttab` <br>
-
-Refer to this [stackoverflow post](https://stackoverflow.com/questions/7171725/open-new-terminal-tab-from-command-line-mac-os-x) for more informations. <br>
-
-If you can't manage to make it work, just start servers manually (see corresponding READMEs).
+Refer to this [stackoverflow post](https://stackoverflow.com/questions/7171725/open-new-terminal-tab-from-command-line-mac-os-x) for more informations. If you can't manage to make it work, just start servers manually (see corresponding READMEs).
 
 # Collaborators
 
