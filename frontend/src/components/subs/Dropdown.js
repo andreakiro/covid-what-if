@@ -7,7 +7,6 @@ export default function Dropdown({
   onOpen,
   onClose,
 }) {
-  // let [open, setOpen] = useState(false);
   let [selected, setSelected] = useState(null);
   let onItemClicked = (name) => {
     onClose();
@@ -35,7 +34,7 @@ export default function Dropdown({
             <svg
               class={`-mr-1 ml-2 h-5 w-5 transform ${
                 open ? "-rotate-180" : ""
-              } transition-transform duration-300`}
+              } transition-transform duration-200`}
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
