@@ -1,6 +1,6 @@
 import React from 'react';
-import Nav from './layout-wise/Navbar.js'
-import Footer from './layout-wise/Footer.js'
+import Nav from './layout/Navbar.js'
+import Footer from './layout/Footer.js'
 
 export default function Layout(props) {
     return (
