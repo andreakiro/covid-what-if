@@ -1,14 +1,12 @@
 import React from "react";
-import Graph from "./components/main/Graph";
 import Layout from "./components/Layout";
-import Box from "./components/subs/Box"
+import Main from "./components/Main";
 
 function App() {
   return (
     <>
       <Layout>
-        <Graph />
-        {/* <Box /> */}
+        <Main />
       </Layout>
     </>
   );
