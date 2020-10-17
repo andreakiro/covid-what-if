@@ -1,5 +1,5 @@
 import React from "react";
-import Graph from "./components/subs/Graph";
+import Graph from "./components/main/Graph";
 import Layout from "./components/Layout";
 import Box from "./components/subs/Box"
 
