@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { API, timeout } from "../Utility.js";
+import { API, timeout } from "../../Utility.js";
 
 export default function Box(props) {
   let [box1, setBox1] = useState("0");
