@@ -1,6 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 
-export default function Dropdown(props) {
+export default function Dropdown({
+  textselector,
+  items,
+  open,
+  onOpen,
+  onClose,
+}) {
+  // let [open, setOpen] = useState(false);
+  let [selected, setSelected] = useState(null);
+  let onItemClicked = (name) => {
+    onClose();
+    setSelected(name);
+  };
   return (
     <div class="relative inline-block text-left">
       <div>
@@ -8,13 +20,22 @@ export default function Dropdown(props) {
           <button
             type="button"
             class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150"
+            onClick={() => {
+              if (open) {
+                onClose();
+              } else {
+                onOpen();
+              }
+            }}
             id="options-menu"
             aria-haspopup="true"
             aria-expanded="true"
           >
-            Select
+            {selected ?? textselector}
             <svg
-              class="-mr-1 ml-2 h-5 w-5"
+              class={`-mr-1 ml-2 h-5 w-5 transform ${
+                open ? "-rotate-180" : ""
+              } transition-transform duration-300`}
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
@@ -29,7 +50,11 @@ export default function Dropdown(props) {
         </span>
       </div>
 
-      {/* <div class="origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg">
+      <div
+        class={`origin-top-right absolute z-10 right-0 mt-2 w-full rounded-md shadow-lg ${
+          open ? "" : "hidden"
+        }`}
+      >
         <div class="rounded-md bg-white shadow-xs">
           <div
             class="py-1"
@@ -37,23 +62,19 @@ export default function Dropdown(props) {
             aria-orientation="vertical"
             aria-labelledby="options-menu"
           >
-            <a
-              href="#"
-              class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
-              role="menuitem"
-            >
-              Global
-            </a>
-            <a
-              href="#"
-              class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
-              role="menuitem"
-            >
-              Switzerland
-            </a>
+            {(items ?? []).map((item) => (
+              <button
+                class="block px-4 py-2 w-full text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
+                role="menuitem"
+                key={item}
+                onClick={() => onItemClicked(item)}
+              >
+                {item}
+              </button>
+            ))}
           </div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }
