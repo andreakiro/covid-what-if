@@ -1,6 +1,24 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-export default function Nav() {
+function NavLink({ style, to, children }) {
+  let currentStyle =
+    "text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700";
+  let notCurrentStyle =
+    "text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700";
+  return (
+    <Link
+      to={to}
+      className={`px-3 py-2 rounded-md text-sm font-medium ${
+        style ? currentStyle : notCurrentStyle
+      }`}
+    >
+      {children}
+    </Link>
+  );
+}
+
+export default function Nav({currentPage}) {
   return (
     <div>
       <nav class="bg-gray-800">
@@ -16,30 +34,18 @@ export default function Nav() {
               </div>
               <div class="hidden md:block">
                 <div class="ml-10 flex items-baseline space-x-4">
-                  <a
-                    href="#"
-                    class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
-                  >
+                  <NavLink to="/home" style={currentPage==="home"}>
                     Home
-                  </a>
-                  <a
-                    href="#"
-                    class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700"
-                  >
+                  </NavLink>
+                  <NavLink to="/" style={currentPage==="simulator"}>
                     Simulator
-                  </a>
-                  <a
-                    href="#"
-                    class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
-                  >
+                  </NavLink>
+                  <NavLink to="/team" style={currentPage==="team"}>
                     Team
-                  </a>
-                  <a
-                    href="#"
-                    class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
-                  >
+                  </NavLink>
+                  <NavLink to="/contribute" style={currentPage==="contribute"}>
                     Contribute
-                  </a>
+                  </NavLink>
                 </div>
               </div>
             </div>
