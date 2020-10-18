@@ -14,36 +14,36 @@ function Label({ text }) {
   );
 }
 
-function InputButton({ text, lock, activeAnimation, modal }) {
+function InputButton({ text, setLock, animation, modal }) {
   let [active, setActive] = useState(false);
   return (
     <div>
       <span class="rounded-md shadow-sm">
         <button
-          disabled={lock !== null}
           onClick={async () => {
-            if (activeAnimation && !modal) {
+            if (animation && !modal) {
+              setLock(text);
               setActive(true);
               await timeout(5000);
               setActive(false);
             } else if (modal) {
+              setLock(text);
               setActive(true);
             }
           }}
           class={`inline-flex justify-center w-full rounded-md border border-${
             active && !modal ? "green" : "gray"
-          }-500 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 ${
-            lock !== null
-              ? "cursor-default"
-              : "hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150"
-          }`}
+          }-500 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150`}
         >
           {text}
         </button>
         <Modal
           title={text}
           open={modal && active}
-          onClose={() => setActive(false)}
+          onClose={() => {
+            setActive(false);
+            setLock(null);
+          }}
         />
       </span>
     </div>
@@ -94,14 +94,14 @@ export default function Inputs(props) {
 
       <InputButton
         text="Demographics"
-        lock={lock}
-        activeAnimation={false}
+        setLock={setLock}
+        animation={false}
         modal={true}
       />
       <InputButton
         text="Download"
-        lock={lock}
-        activeAnimation={true}
+        setLock={setLock}
+        animation={true}
         modal={false}
       />
     </div>
