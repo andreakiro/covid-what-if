@@ -70,7 +70,8 @@ export default function Inputs(props) {
         <Label text="Country" />
         <InputDropdown
           text="Select"
-          items={["Global", "Switzerland", "Italy"]}
+          items={["Global", "America", "Switzerland"]}
+          sortItems={true}
           lock={lock}
           setLock={setLock}
         />

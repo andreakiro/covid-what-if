@@ -3,6 +3,7 @@ import React, { useState } from "react";
 export default function Dropdown({
   textselector,
   items,
+  sortItems,
   open,
   onOpen,
   onClose,
@@ -53,16 +54,36 @@ export default function Dropdown({
         }`}
       >
         <div class="rounded-md bg-white shadow-xs">
+          <div class={`${selected === null ? "hidden" : ""}`}>
+            <div class="py-1">
+              <p class="block px-4 py-2 w-full text-left text-sm leading-5 text-gray-700">
+                {selected}
+              </p>
+            </div>
+            <div class="border-t border-gray-300"></div>
+          </div>
           <div class="py-1">
-            {(items ?? []).map((item) => (
-              <button
-                class="block px-4 py-2 w-full text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
-                key={item}
-                onClick={() => onItemClicked(item)}
-              >
-                {item}
-              </button>
-            ))}
+            {(items ?? [])
+              .sort((a, b) => {
+                if (sortItems) {
+                  if (a === "Global") return -1;
+                  else if (b === "Global") return 1;
+                  else return a.toLowerCase() < b.toLowerCase() ? -1 : 1;
+                }
+              })
+              .map((item) => {
+                if (item !== selected) {
+                  return (
+                    <button
+                      class="block px-4 py-2 w-full text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
+                      key={item}
+                      onClick={() => onItemClicked(item)}
+                    >
+                      {item}
+                    </button>
+                  );
+                }
+              })}
           </div>
         </div>
       </div>
