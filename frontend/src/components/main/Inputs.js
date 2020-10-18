@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Dropdown from "../subs/Dropdown";
+import Modal from "../subs/Modal";
 import { timeout } from "../../Utility.js";
 
 function Label({ text }) {
@@ -13,7 +14,7 @@ function Label({ text }) {
   );
 }
 
-function InputButton({ text, lock, activeAnimation }) {
+function InputButton({ text, lock, activeAnimation, modal }) {
   let [active, setActive] = useState(false);
   return (
     <div>
@@ -21,14 +22,16 @@ function InputButton({ text, lock, activeAnimation }) {
         <button
           disabled={lock !== null}
           onClick={async () => {
-            if (activeAnimation) {
+            if (activeAnimation && !modal) {
               setActive(true);
               await timeout(5000);
               setActive(false);
+            } else if (modal) {
+              setActive(true);
             }
           }}
           class={`inline-flex justify-center w-full rounded-md border border-${
-            active ? "green" : "gray"
+            active && !modal ? "green" : "gray"
           }-500 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 ${
             lock !== null
               ? "cursor-default"
@@ -37,6 +40,11 @@ function InputButton({ text, lock, activeAnimation }) {
         >
           {text}
         </button>
+        <Modal
+          title={text}
+          open={modal && active}
+          onClose={() => setActive(false)}
+        />
       </span>
     </div>
   );
@@ -84,8 +92,18 @@ export default function Inputs(props) {
         />
       </div>
 
-      <InputButton text="Demographics" lock={lock} activeAnimation={false} />
-      <InputButton text="Download" lock={lock} activeAnimation={true} />
+      <InputButton
+        text="Demographics"
+        lock={lock}
+        activeAnimation={false}
+        modal={true}
+      />
+      <InputButton
+        text="Download"
+        lock={lock}
+        activeAnimation={true}
+        modal={false}
+      />
     </div>
   );
 }
