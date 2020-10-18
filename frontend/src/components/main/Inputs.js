@@ -4,13 +4,12 @@ import { timeout } from "../../Utility.js";
 
 function Label({ text }) {
   return (
-    <div>
-      <span class="rounded-md shadow-sm">
-        <p class="inline-flex justify-center w-full rounded-md border border-gray-500 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700">
-          {text}
-        </p>
-      </span>
-    </div>
+    <label
+      id="listbox-label"
+      class="block text-sm leading-5 font-medium text-gray-700"
+    >
+      {text}
+    </label>
   );
 }
 
