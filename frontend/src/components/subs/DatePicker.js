@@ -44,7 +44,7 @@ function dateIsValid(date, y1, y2) {
   return !bool;
 }
 
-export default function Dropdown({ textselector, open, onOpen, onClose }) {
+export default function DatePicker({ textselector, open, onOpen, onClose }) {
   let [selected, setSelected] = useState(null);
   let [placeholder, setPlaceholder] = useState("DD.MM.YYYY");
   let [invalidInput, setInvalidInput] = useState(false);
