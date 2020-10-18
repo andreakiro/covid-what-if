@@ -27,8 +27,6 @@ export default function Dropdown({
               }
             }}
             id="options-menu"
-            aria-haspopup="true"
-            aria-expanded="true"
           >
             {selected ?? textselector}
             <svg
@@ -55,16 +53,10 @@ export default function Dropdown({
         }`}
       >
         <div class="rounded-md bg-white shadow-xs">
-          <div
-            class="py-1"
-            role="menu"
-            aria-orientation="vertical"
-            aria-labelledby="options-menu"
-          >
+          <div class="py-1">
             {(items ?? []).map((item) => (
               <button
                 class="block px-4 py-2 w-full text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
-                role="menuitem"
                 key={item}
                 onClick={() => onItemClicked(item)}
               >
