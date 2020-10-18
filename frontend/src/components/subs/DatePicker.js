@@ -44,7 +44,7 @@ function dateIsValid(date, y1, y2) {
   return !bool;
 }
 
-export default function DatePicker({ textselector, open, onOpen, onClose }) {
+export default function DatePicker({ textselector, open, onOpen, onClose, orangeLock, redLock }) {
   let [selected, setSelected] = useState(null);
   let [placeholder, setPlaceholder] = useState("DD.MM.YYYY");
   let [invalidInput, setInvalidInput] = useState(false);
@@ -95,9 +95,9 @@ export default function DatePicker({ textselector, open, onOpen, onClose }) {
           <button
             type="button"
             class={`inline-flex justify-center w-full rounded-md px-4 py-2 bg-white text-sm leading-5 font-medium border ${
-              invalidInput
+              (invalidInput || redLock)
                 ? "border-red-300 text-red-700 hover:text-red-600"
-                : inputProgress
+                : (inputProgress || orangeLock)
                 ? "border-orange-300 text-yellow-700 hover:text-yellow-600"
                 : "border-gray-300 text-gray-700 hover:text-gray-500"
             } focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150`}

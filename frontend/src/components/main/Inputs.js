@@ -3,6 +3,7 @@ import Dropdown from "../subs/Dropdown";
 import Modal from "../subs/Modal";
 import DatePicker from "../subs/DatePicker";
 import { timeout } from "../../Utility.js";
+import { untilIsBeforeFrom } from "../../utilities/DateComparator";
 
 function Label({ text }) {
   return (
@@ -66,7 +67,14 @@ function InputDropdown({ text, items, lock, setLock, setGlobalInput }) {
   );
 }
 
-function InputDatePicker({ text, lock, setLock, setGlobalInput }) {
+function InputDatePicker({
+  text,
+  lock,
+  setLock,
+  setGlobalInput,
+  orangeLock,
+  redLock,
+}) {
   return (
     <DatePicker
       textselector={text}
@@ -78,6 +86,8 @@ function InputDatePicker({ text, lock, setLock, setGlobalInput }) {
           setGlobalInput(v);
         }
       }}
+      orangeLock={orangeLock}
+      redLock={redLock}
     />
   );
 }
@@ -85,7 +95,7 @@ function InputDatePicker({ text, lock, setLock, setGlobalInput }) {
 export default function Inputs(props) {
   let [lock, setLock] = useState(null);
   let [country, setCountry] = useState("Global");
-  let [from, setFrom] = useState("Hey");
+  let [from, setFrom] = useState(null);
   let [until, setUntil] = useState(null);
 
   return (
@@ -109,12 +119,16 @@ export default function Inputs(props) {
           lock={lock}
           setLock={setLock}
           setGlobalInput={(from) => setFrom(from)}
+          orangeLock={from === null && until !== null}
+          redLock={untilIsBeforeFrom(from, until)}
         />
         <InputDatePicker
           text="Until"
           lock={lock}
           setLock={setLock}
           setGlobalInput={(until) => setUntil(until)}
+          orangeLock={false}
+          redLock={untilIsBeforeFrom(from, until)}
         />
       </div>
 
