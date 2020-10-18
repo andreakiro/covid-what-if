@@ -5,9 +5,9 @@ function isNumeric(str) {
   return str === "" ? true : !isNaN(parseInt(str));
 }
 
-function isDateNotValid(date, y1, y2) {
+function dateIsValid(date, y1, y2) {
   // check if input is too big
-  if (date.length > 10) return true;
+  if (date.length > 10) return false;
 
   // check that DD.MM.YYYY are numeric
   let bool = false;
@@ -41,7 +41,7 @@ function isDateNotValid(date, y1, y2) {
     let days = parseInt(date.substring(0, 2));
     bool |= days > 31 || days < 1;
   }
-  return bool;
+  return !bool;
 }
 
 export default function Dropdown({ textselector, open, onOpen, onClose }) {
@@ -50,16 +50,16 @@ export default function Dropdown({ textselector, open, onOpen, onClose }) {
   let [invalidInput, setInvalidInput] = useState(false);
   let [inputProgress, setInputProgress] = useState(false);
 
-  let notValidYet = (date) => {
-    return isDateNotValid(date, 2000, 2050);
+  let valid = (date) => {
+    return dateIsValid(date, 2000, 2050);
   };
 
   let invalidInputLogic = (date) => {
-    if (notValidYet(date) && date != "" && date !== null) {
-      setInvalidInput(true);
-    } else {
-      setInvalidInput(false);
-    }
+      if (valid(date) || date == "") {
+          setInvalidInput(false);
+      } else {
+          setInvalidInput(true);
+      }
   };
 
   let inputProgressLogic = (date) => {
