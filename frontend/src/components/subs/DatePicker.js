@@ -1,10 +1,74 @@
 import React, { useState } from "react";
 
+function isNumeric(str) {
+  if (typeof str != "string") return false;
+  return str === "" ? true : !isNaN(parseInt(str));
+}
+
+function isDateNotValid(date, y1, y2) {
+  // check if input is too big
+  if (date.length > 10) return true;
+
+  // check that DD.MM.YYYY are numeric
+  let bool = false;
+  for (let i = 0; i < date.length; i++) {
+    if (bool) return true;
+    if (i == 2 || i == 5) continue;
+    bool |= !isNumeric(date.substring(i, i + 1));
+  }
+
+  // check that char 3 and 6 are dots
+  if (date.length >= 6) {
+    bool |= date.substring(5, 6) != ".";
+  } else if (date.length >= 3) {
+    bool |= date.substring(2, 3) != ".";
+  }
+
+  // check coherence for YYYY
+  if (date.length == 10) {
+    let year = parseInt(date.substring(6, 10));
+    bool |= year > y2 || year < y1;
+  }
+
+  // check coherence for MM
+  if (date.length >= 5) {
+    let month = parseInt(date.substring(3, 5));
+    bool |= month > 12 || month < 1;
+  }
+
+  // check coherence for DD
+  if (date.length >= 2) {
+    let days = parseInt(date.substring(0, 2));
+    bool |= days > 31 || days < 1;
+  }
+  return bool;
+}
+
 export default function Dropdown({ textselector, open, onOpen, onClose }) {
   let [selected, setSelected] = useState(null);
   let [placeholder, setPlaceholder] = useState("DD.MM.YYYY");
   let [invalidInput, setInvalidInput] = useState(false);
-  let notValidYet = (date) => true;
+
+  let notValidYet = (date) => {
+      return isDateNotValid(date, 2000, 2050);
+  };
+
+  let invalidInputLogic = (date) => {
+    if (notValidYet(date) && date != "" && date !== null) {
+      setInvalidInput(true);
+    } else {
+      setInvalidInput(false);
+    }
+  };
+
+  let setTextOrReset = (date) => {
+    if (date === null || date === "") {
+      setSelected(textselector);
+    } else {
+      setSelected(date);
+    }
+  };
+
   return (
     <div class="relative inline-block text-left">
       <div>
@@ -52,21 +116,13 @@ export default function Dropdown({ textselector, open, onOpen, onClose }) {
       >
         <div class="rounded-md bg-white shadow-xs">
           <input
-            id="price"
+            id="date"
             class="block px-4 py-2 w-full text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
             placeholder={placeholder}
             onChange={(event) => {
               let date = event.target.value;
-              if (notValidYet(date.toString)) {
-                setInvalidInput(true);
-              } else {
-                setInvalidInput(false);
-              }
-              if (date === null || date === "") {
-                setSelected(textselector);
-              } else {
-                setSelected(date);
-              }
+              invalidInputLogic(date);
+              setTextOrReset(date);
             }}
           />
         </div>
