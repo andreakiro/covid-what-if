@@ -1,6 +1,6 @@
 import React from "react";
-import Graph from "./main/Graph";
-import Inputs from "./main/Inputs";
+import Graph from "../components/main/Graph";
+import Inputs from "../components/main/Inputs";
 
 export default function Simulator() {
   return (

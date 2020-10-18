@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Layout from "./components/Layout";
-import Simulator from "./components/Simulator";
+import Simulator from "./pages/Simulator";
 
 export default function App() {
   return (
