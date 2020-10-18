@@ -55,18 +55,18 @@ export default function Dropdown({ textselector, open, onOpen, onClose }) {
   };
 
   let invalidInputLogic = (date) => {
-      if (valid(date) || date == "") {
-          setInvalidInput(false);
-      } else {
-          setInvalidInput(true);
-      }
+    if (valid(date) || date == "") {
+      setInvalidInput(false);
+    } else {
+      setInvalidInput(true);
+    }
   };
 
   let inputProgressLogic = (date) => {
     if (date.length == 10 || date == "") {
-        setInputProgress(false);
+      setInputProgress(false);
     } else {
-        setInputProgress(true);
+      setInputProgress(true);
     }
   };
 
@@ -78,6 +78,12 @@ export default function Dropdown({ textselector, open, onOpen, onClose }) {
     }
   };
 
+  let closeLogic = (date) => {
+      if (date.length == 10) {
+          onClose();
+      }
+  };
+
   return (
     <div class="relative inline-block text-left">
       <div>
@@ -86,8 +92,10 @@ export default function Dropdown({ textselector, open, onOpen, onClose }) {
             type="button"
             class={`inline-flex justify-center w-full rounded-md px-4 py-2 bg-white text-sm leading-5 font-medium border ${
               invalidInput
-                ? "border-red-300 text-red-700 hover:text-red-500"
-                : (inputProgress ? "border-orange-300 text-yellow-700 hover:text-yellow-600" : "border-gray-300 text-gray-700 hover:text-gray-500")
+                ? "border-red-300 text-red-700 hover:text-red-600"
+                : inputProgress
+                ? "border-orange-300 text-yellow-700 hover:text-yellow-600"
+                : "border-gray-300 text-gray-700 hover:text-gray-500"
             } focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150`}
             onClick={() => {
               if (open) {
@@ -133,6 +141,7 @@ export default function Dropdown({ textselector, open, onOpen, onClose }) {
               inputProgressLogic(date);
               invalidInputLogic(date);
               setTextOrReset(date);
+              closeLogic(date);
             }}
           />
         </div>
