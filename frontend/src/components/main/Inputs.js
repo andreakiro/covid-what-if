@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Dropdown from "../subs/Dropdown";
 import Modal from "../subs/Modal";
 import DatePicker from "../subs/DatePicker";
-import DatePicker2 from "../subs/DatePicker2";
 import { timeout } from "../../Utility.js";
 
 function Label({ text }) {
@@ -114,8 +113,6 @@ export default function Inputs(props) {
         onOpen={() => setLock("FromDP")}
         onClose={() => setLock(null)}
       />
-
-      {/* <DatePicker2 /> */}
     </div>
   );
 }
