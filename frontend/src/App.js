@@ -2,6 +2,9 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Layout from "./components/Layout";
 import Simulator from "./pages/Simulator";
+import Home from "./pages/Home";
+import Team from "./pages/Team";
+import Contribute from "./pages/Contribute";
 
 export default function App() {
   return (
@@ -30,16 +33,4 @@ export default function App() {
       </Switch>
     </Router>
   );
-}
-
-function Home() {
-  return <h2>Home</h2>;
-}
-
-function Team() {
-  return <h2>Team</h2>;
-}
-
-function Contribute() {
-  return <h2>Contribute</h2>;
 }
