@@ -10,7 +10,7 @@ export default function Dropdown({
 }) {
   let [selected, setSelected] = useState(null);
   let onItemClicked = (name) => {
-    onClose();
+    onClose(name);
     setSelected(name);
   };
   return (
