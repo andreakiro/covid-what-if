@@ -80,7 +80,11 @@ export default function DatePicker({ textselector, open, onOpen, onClose }) {
 
   let closeLogic = (date) => {
       if (date.length == 10) {
-          onClose();
+          if (valid(date)) {
+              onClose(date);
+          } else {
+              onClose(null);
+          }
       }
   };
 
@@ -99,7 +103,7 @@ export default function DatePicker({ textselector, open, onOpen, onClose }) {
             } focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150`}
             onClick={() => {
               if (open) {
-                onClose();
+                onClose(null);
                 setPlaceholder("DD.MM.YYYY");
               } else {
                 onOpen();
