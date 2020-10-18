@@ -51,7 +51,7 @@ function InputButton({ text, setLock, animation, modal }) {
   );
 }
 
-function InputDropdown({ text, items, lock, setLock, setCountry }) {
+function InputDropdown({ text, items, lock, setLock, setGlobalInput }) {
   return (
     <Dropdown
       textselector={text}
@@ -60,19 +60,24 @@ function InputDropdown({ text, items, lock, setLock, setCountry }) {
       onOpen={() => setLock(text)}
       onClose={(c) => {
         setLock(null);
-        setCountry(c);
+        setGlobalInput(c);
       }}
     />
   );
 }
 
-function InputDatePicker({ text, lock, setLock }) {
+function InputDatePicker({ text, lock, setLock, setGlobalInput }) {
   return (
     <DatePicker
       textselector={text}
       open={lock === text}
       onOpen={() => setLock(text)}
-      onClose={() => setLock(null)}
+      onClose={(v) => {
+        setLock(null);
+        if (v !== null) {
+          setGlobalInput(v);
+        }
+      }}
     />
   );
 }
@@ -80,7 +85,7 @@ function InputDatePicker({ text, lock, setLock }) {
 export default function Inputs(props) {
   let [lock, setLock] = useState(null);
   let [country, setCountry] = useState("Global");
-  let [from, setFrom] = useState(null);
+  let [from, setFrom] = useState("Hey");
   let [until, setUntil] = useState(null);
 
   return (
@@ -93,7 +98,7 @@ export default function Inputs(props) {
           sortItems={true}
           lock={lock}
           setLock={setLock}
-          setCountry={(c) => setCountry(c)}
+          setGlobalInput={(c) => setCountry(c)}
         />
       </div>
 
@@ -103,13 +108,13 @@ export default function Inputs(props) {
           text="From"
           lock={lock}
           setLock={setLock}
-          setFrom={(from) => setFrom(from)}
+          setGlobalInput={(from) => setFrom(from)}
         />
         <InputDatePicker
           text="Until"
           lock={lock}
           setLock={setLock}
-          setUntil={(until) => setUntil(until)}
+          setGlobalInput={(until) => setUntil(until)}
         />
       </div>
 
