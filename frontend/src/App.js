@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Layout from "./components/Layout";
-import Main from "./components/Main";
+import Simulator from "./components/Simulator";
 
 export default function App() {
   return (
@@ -24,7 +24,7 @@ export default function App() {
         </Route>
         <Route path="/">
           <Layout currentPage="simulator">
-            <Main />
+            <Simulator />
           </Layout>
         </Route>
       </Switch>

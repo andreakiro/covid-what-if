@@ -2,7 +2,7 @@ import React from "react";
 import Graph from "./main/Graph";
 import Inputs from "./main/Inputs";
 
-export default function Main() {
+export default function Simulator() {
   return (
     <>
       <div className="flex w-full mt-12">
