@@ -63,6 +63,17 @@ function InputDropdown({ text, items, lock, setLock }) {
   );
 }
 
+function InputDatePicker({ text, lock, setLock }) {
+  return (
+    <DatePicker
+      textselector={text}
+      open={lock === text}
+      onOpen={() => setLock(text)}
+      onClose={() => setLock(null)}
+    />
+  );
+}
+
 export default function Inputs(props) {
   let [lock, setLock] = useState(null);
   return (
@@ -80,18 +91,8 @@ export default function Inputs(props) {
 
       <div className="flex flex-col space-y-2 w-32">
         <Label text="Time frame" />
-        <InputDropdown
-          text="From"
-          items={["January", "February", "March"]}
-          lock={lock}
-          setLock={setLock}
-        />
-        <InputDropdown
-          text="Until"
-          items={["January", "February", "March"]}
-          lock={lock}
-          setLock={setLock}
-        />
+        <InputDatePicker text="From" lock={lock} setLock={setLock} />
+        <InputDatePicker text="Until" lock={lock} setLock={setLock} />
       </div>
 
       <InputButton
@@ -105,13 +106,6 @@ export default function Inputs(props) {
         setLock={setLock}
         animation={true}
         modal={false}
-      />
-
-      <DatePicker
-        textselector="FromDP"
-        open={lock === "FromDP"}
-        onOpen={() => setLock("FromDP")}
-        onClose={() => setLock(null)}
       />
     </div>
   );
