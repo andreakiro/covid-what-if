@@ -1,5 +1,5 @@
 import React from "react";
-import Graph from "../components/main/Graph";
+import Box from "../components/main/Box";
 import Inputs from "../components/main/Inputs";
 
 export default function Simulator() {
@@ -10,7 +10,7 @@ export default function Simulator() {
           <Inputs />
         </div>
         <div className="w-2/3">
-          <Graph />
+          <Box />
         </div>
       </div>
     </>
