@@ -10,7 +10,7 @@ export default function Simulator() {
           <Inputs />
         </div>
         <div className="w-2/3">
-          <Box />
+          <Box boxes={8} height={3}/>
         </div>
       </div>
     </>
