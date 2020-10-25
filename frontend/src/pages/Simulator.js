@@ -17,7 +17,7 @@ export default function Simulator() {
         <div className="w-2/3">
           <div class="flex-col space-y-6">
             {/* <Graph /> */}
-            <Box boxes={8} height={3} />
+            <Box boxes={8} height={4} />
           </div>
         </div>
       </div>

@@ -17,68 +17,62 @@ function Label({ text, link }) {
 
 function Teammate({ fullName, position, picture, link }) {
   return (
-    <div class="flex flex-col space-x-8 space-y-4 w-100">
-      <div class="flex justify-center">
-        <img
-          class="inline-block h-20 w-20 rounded-full text-white shadow-solid justify-center"
-          src={picture}
-          alt=""
-        ></img>
-      </div>
-      <div class="flex justify-center">
-        <Label text={fullName} link={link} />
-      </div>
+    <div class="flex flex-col items-center space-y-4 w-100">
+      <img
+        class="inline-block h-20 w-20 rounded-full text-white shadow-solid"
+        src={picture}
+        alt=""
+      ></img>
+
+      <Label text={fullName} link={link} />
     </div>
   );
 }
 
 export default function Team() {
   return (
-    <div className="flex flex-col justify-center space-y-12 mt-12">
-      <div class="flex justify-center w-full">
-        <Teammate
-          fullName="Martin Jaggi"
-          link="https://people.epfl.ch/martin.jaggi"
-          picture="https://people.epfl.ch/private/common/photos/links/276449.jpg?ts=1603027054"
-        />
-        <Teammate
-          fullName="Mary-Anne Hartley"
-          link="https://people.epfl.ch/mary-anne.hartley"
-          picture="https://people.epfl.ch/private/common/photos/links/204167.jpg?ts=1603027015"
-        />
-        <Teammate
-          fullName="Prakhar Gupta"
-          link="https://people.epfl.ch/prakhar.gupta"
-          picture="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-        />
-        <Teammate
-          fullName=" Thierry Bossy"
-          link="https://people.epfl.ch/thierry.bossy"
-          picture="https://media-exp1.licdn.com/dms/image/C4D03AQEiZTE3yMYTYg/profile-displayphoto-shrink_400_400/0?e=1608768000&v=beta&t=0p2-Wluph6wDc1o7hHcwfy5o9-kvnTLCNaPn2Ur3vj8"
-        />
-      </div>
-      <div class="flex justify-center w-full">
-        <Teammate
-          fullName="Andrea Pinto"
-          link="https://linkedin.com/in/pinto-andrea/"
-          picture="https://media-exp1.licdn.com/dms/image/C5603AQFVsBf9AHAsEA/profile-displayphoto-shrink_400_400/0?e=1608768000&v=beta&t=xiCW7YraTUloPx4sZxW0EzS3FAnXZK4I28a5ylpju6k"
-        />
+    <div className="grid grid-cols-3 gap-x-5 gap-y-10 mt-12">
+      <Teammate
+        fullName="Martin Jaggi"
+        link="https://people.epfl.ch/martin.jaggi"
+        picture="https://people.epfl.ch/private/common/photos/links/276449.jpg?ts=1603027054"
+      />
+      <Teammate
+        fullName="Mary-Anne Hartley"
+        link="https://people.epfl.ch/mary-anne.hartley"
+        picture="https://people.epfl.ch/private/common/photos/links/204167.jpg?ts=1603027015"
+      />
+      <Teammate
+        fullName="Prakhar Gupta"
+        link="https://people.epfl.ch/prakhar.gupta"
+        picture="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+      />
+      <Teammate
+        fullName=" Thierry Bossy"
+        link="https://people.epfl.ch/thierry.bossy"
+        picture="https://media-exp1.licdn.com/dms/image/C4D03AQEiZTE3yMYTYg/profile-displayphoto-shrink_400_400/0?e=1608768000&v=beta&t=0p2-Wluph6wDc1o7hHcwfy5o9-kvnTLCNaPn2Ur3vj8"
+      />
 
-        <Teammate
-          fullName=" Lucas Massemin"
-          link="https://people.epfl.ch/lucas.massemin"
-          picture="https://media-exp1.licdn.com/dms/image/C5603AQF0U8qYYKD9sw/profile-displayphoto-shrink_400_400/0?e=1608768000&v=beta&t=Iu7_OLz0xCwfbKLtVKIpvQAqL5wFPVJkYhy5mqLr29Q"
-        />
-        <Teammate
-          fullName="Kimia Hemmatirad"
-          picture="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-        />
-        <Teammate
-          fullName="Pablo Canas"
-          link="https://people.epfl.ch/pablo.canas"
-          picture="https://media-exp1.licdn.com/dms/image/C5603AQFiFNmvbRiotA/profile-displayphoto-shrink_400_400/0?e=1608768000&v=beta&t=lGLgUMjtWip8YCXWhoo9sDDMks66GdPu0wYxrPy0Mas"
-        />
-      </div>
+      <Teammate
+        fullName="Andrea Pinto"
+        link="https://linkedin.com/in/pinto-andrea/"
+        picture="https://media-exp1.licdn.com/dms/image/C5603AQFVsBf9AHAsEA/profile-displayphoto-shrink_400_400/0?e=1608768000&v=beta&t=xiCW7YraTUloPx4sZxW0EzS3FAnXZK4I28a5ylpju6k"
+      />
+
+      <Teammate
+        fullName=" Lucas Massemin"
+        link="https://people.epfl.ch/lucas.massemin"
+        picture="https://media-exp1.licdn.com/dms/image/C5603AQF0U8qYYKD9sw/profile-displayphoto-shrink_400_400/0?e=1608768000&v=beta&t=Iu7_OLz0xCwfbKLtVKIpvQAqL5wFPVJkYhy5mqLr29Q"
+      />
+      <Teammate
+        fullName="Kimia Hemmatirad"
+        picture="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+      />
+      <Teammate
+        fullName="Pablo Canas"
+        link="https://people.epfl.ch/pablo.canas"
+        picture="https://media-exp1.licdn.com/dms/image/C5603AQFiFNmvbRiotA/profile-displayphoto-shrink_400_400/0?e=1608768000&v=beta&t=lGLgUMjtWip8YCXWhoo9sDDMks66GdPu0wYxrPy0Mas"
+      />
     </div>
   );
 }
