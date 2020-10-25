@@ -49,7 +49,7 @@ export default function Box({ boxes }) {
       <div class="text-left w-4/5">
         <Label text="Each box represent 1/8 of the time frame" />
       </div>
-      <span class="inline-flex justify-center w-4/5 rounded-md border border-gray-600 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150">
+      <div class="inline-flex justify-center w-4/5 rounded-md border border-gray-600 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150">
         <div className="flex flex-col space-y-2 w-full">
           {width.map((y) => {
             return (
@@ -68,7 +68,7 @@ export default function Box({ boxes }) {
             );
           })}
         </div>
-      </span>
+      </div>
       <div class="text-right w-4/5">
         <Label text="Click on a box to increase policy level" />
       </div>
