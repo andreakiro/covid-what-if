@@ -3,10 +3,11 @@ import Box from "../components/main/Box";
 import Inputs from "../components/main/Inputs";
 import Graph from "../components/main/Graph";
 import Policies from "../components/main/Policies";
+import ParameterProvider from "../components/ParameterProvider";
 
 export default function Simulator() {
   return (
-    <>
+    <ParameterProvider>
       <div className="flex w-full mt-12">
         <div className="w-1/3 flex justify-center">
           <div class="flex-col space-y-6">
@@ -21,6 +22,6 @@ export default function Simulator() {
           </div>
         </div>
       </div>
-    </>
+    </ParameterProvider>
   );
 }
