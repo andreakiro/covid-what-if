@@ -15,7 +15,7 @@ export function useParameters() {
 }
 
 export default function ParameterProvider(props) {
-  let height = 5;
+  let height = 2;
   let [level, setLevel] = useState(initialize(height));
 
   useEffect(() => setLevel(initialize(height)), [height, setLevel]);

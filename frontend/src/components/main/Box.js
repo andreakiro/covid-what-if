@@ -45,7 +45,7 @@ export default function Box({ boxes }) {
   );
 
   return (
-    <div class="flex flex-col items-center space-y-2">
+    <div class="flex flex-col items-center space-y-2 w-full">
       <div class="text-left w-4/5">
         <Label text="Each box represent 1/8 of the time frame" />
       </div>
