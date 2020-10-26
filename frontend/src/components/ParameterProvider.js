@@ -26,10 +26,8 @@ export function getParameters() {
 
 export default function ParameterProvider(props) {
   let parameters = getParameters();
-  
-  // useEffect(() => {
-  //   let r = send(parameters);
-  // }, [parameters]);
+
+  useEffect(() => parameters.graphParams.updateData(), [parameters.inputsParams.country, parameters.boxParams.level]);
   
   return (
     <Context.Provider value={parameters}>{props.children}</Context.Provider>

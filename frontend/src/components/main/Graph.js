@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useParameters } from "../ParameterProvider";
 import * as d3 from "d3";
 
-export default function Graph({ bigdata }) {
+export default function Graph() {
   const ref = React.useRef(null);
+  let {
+    graphParams: { bigdata },
+  } = useParameters();
 
   const margin = {
     top: 10,
