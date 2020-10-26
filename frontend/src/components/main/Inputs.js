@@ -4,6 +4,7 @@ import Modal from "../subs/Modal";
 import DatePicker from "../subs/DatePicker";
 import { timeout } from "../../Utility.js";
 import { untilIsBeforeFrom } from "../../utilities/DateComparator";
+import { useParameters } from "../ParameterProvider";
 
 function Label({ text }) {
   return (
@@ -93,10 +94,9 @@ function InputDatePicker({
 }
 
 export default function Inputs(props) {
+  let { inputsParams } = useParameters();
+  let { setCountry, from, setFrom, until, setUntil } = inputsParams;
   let [lock, setLock] = useState(null);
-  let [country, setCountry] = useState("Global");
-  let [from, setFrom] = useState(null);
-  let [until, setUntil] = useState(null);
 
   return (
     <div className="flex flex-col space-y-4 w-32">
