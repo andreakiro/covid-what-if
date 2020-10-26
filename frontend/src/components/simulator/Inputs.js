@@ -4,7 +4,7 @@ import Modal from "../subs/Modal";
 import DatePicker from "../subs/DatePicker";
 import { timeout } from "../../Utility.js";
 import { untilIsBeforeFrom } from "../../utilities/DateComparator";
-import { useParameters } from "../ParameterProvider";
+import { useParameters } from "../../parameters/ParameterProvider";
 
 function Label({ text }) {
   return (

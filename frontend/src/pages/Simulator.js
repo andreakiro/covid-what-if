@@ -3,7 +3,7 @@ import Box from "../components/main/Box";
 import Inputs from "../components/main/Inputs";
 import Graph from "../components/main/Graph";
 import Policies from "../components/main/Policies";
-import ParameterProvider from "../components/ParameterProvider";
+import ParameterProvider from "../parameters/ParameterProvider";
 import * as d3 from "d3";
 
 export default function Simulator() {

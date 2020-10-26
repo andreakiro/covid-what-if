@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { BoxParameters } from "./parameters/BoxParameters";
-import { GraphParameters } from "./parameters/GraphParameters";
-import { InputsParameters } from "./parameters/InputsParameters";
+import { BoxParameters } from "./BoxParameters";
+import { GraphParameters } from "./GraphParameters";
+import { InputsParameters } from "./InputsParameters";
 import { send } from "../API";
 
 const Context = createContext(null);

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParameters } from "../ParameterProvider";
+import { useParameters } from "../../parameters/ParameterProvider";
 
 function Label({ text }) {
   return (

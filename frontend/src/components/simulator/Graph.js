@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParameters } from "../ParameterProvider";
+import { useParameters } from "../../parameters/ParameterProvider";
 import * as d3 from "d3";
 
 export default function Graph() {
