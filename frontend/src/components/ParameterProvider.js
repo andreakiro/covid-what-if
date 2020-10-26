@@ -1,30 +1,37 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { BoxParameters } from "./parameters/BoxParameters";
+import { GraphParameters } from "./parameters/GraphParameters";
+import { InputsParameters } from "./parameters/InputsParameters";
+import { send } from "../API";
 
 const Context = createContext(null);
-
-function singleCycle(val) {
-  return (val + 1) % 4;
-}
-
-function initialize(height) {
-    return Array(height << 3).fill(0);
-}
 
 export function useParameters() {
   return useContext(Context);
 }
 
-export default function ParameterProvider(props) {
-  let height = 2;
-  let [level, setLevel] = useState(initialize(height));
+export function getParameters() {
+  let boxParams = BoxParameters();
+  let inputsParams = InputsParameters();
+  let graphParams = GraphParameters();
 
-  useEffect(() => setLevel(initialize(height)), [height, setLevel]);
-
-  let cycle = (i) => {
-   setLevel(level => level.map((val, index) => index === i ? singleCycle(val) : val))
+  let parameters = {
+    boxParams,
+    inputsParams,
+    graphParams,
   };
 
-  let params = { height, level, cycle };
+  return parameters;
+}
 
-  return <Context.Provider value={params}>{props.children}</Context.Provider>;
+export default function ParameterProvider(props) {
+  let parameters = getParameters();
+  
+  // useEffect(() => {
+  //   let r = send(parameters);
+  // }, [parameters]);
+  
+  return (
+    <Context.Provider value={parameters}>{props.children}</Context.Provider>
+  );
 }
