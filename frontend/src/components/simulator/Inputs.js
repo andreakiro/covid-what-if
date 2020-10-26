@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Dropdown from "../subs/Dropdown";
-import Modal from "../subs/Modal";
-import DatePicker from "../subs/DatePicker";
-import { timeout } from "../../Utility.js";
-import { untilIsBeforeFrom } from "../../utilities/DateComparator";
 import { useParameters } from "../../parameters/ParameterProvider";
+import { untilIsBeforeFrom } from "../../utilities/DateComparator";
+import { timeout } from "../../Utility.js";
+import DatePicker from "../modules/DatePicker";
+import Dropdown from "../modules/Dropdown";
+import Modal from "../modules/Modal";
 
 function Label({ text }) {
   return (

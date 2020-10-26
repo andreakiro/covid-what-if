@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useParameters } from "../../parameters/ParameterProvider";
 import * as d3 from "d3";
+import React from "react";
+import { useParameters } from "../../parameters/ParameterProvider";
 
 export default function Graph() {
   const ref = React.useRef(null);

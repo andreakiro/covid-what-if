@@ -18,7 +18,7 @@ function NavLink({ style, to, children }) {
   );
 }
 
-export default function Nav({currentPage}) {
+export default function Nav({ currentPage }) {
   return (
     <div>
       <nav class="bg-gray-800">
@@ -34,16 +34,19 @@ export default function Nav({currentPage}) {
               </div>
               <div class="hidden md:block">
                 <div class="ml-10 flex items-baseline space-x-4">
-                  <NavLink to="/home" style={currentPage==="home"}>
+                  <NavLink to="/home" style={currentPage === "home"}>
                     Home
                   </NavLink>
-                  <NavLink to="/" style={currentPage==="simulator"}>
+                  <NavLink to="/" style={currentPage === "simulator"}>
                     Simulator
                   </NavLink>
-                  <NavLink to="/team" style={currentPage==="team"}>
+                  <NavLink to="/team" style={currentPage === "team"}>
                     Team
                   </NavLink>
-                  <NavLink to="/contribute" style={currentPage==="contribute"}>
+                  <NavLink
+                    to="/contribute"
+                    style={currentPage === "contribute"}
+                  >
                     Contribute
                   </NavLink>
                 </div>

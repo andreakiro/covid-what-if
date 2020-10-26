@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Dropdown from "../subs/Dropdown";
+import Dropdown from "../modules/Dropdown";
 
 function Label({ text }) {
   return (

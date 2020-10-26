@@ -1,10 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Layout from "./components/Layout";
-import Simulator from "./pages/Simulator";
-import Home from "./pages/Home";
-import Team from "./pages/Team";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Layout from "./components/layout/Layout";
 import Contribute from "./pages/Contribute";
+import Home from "./pages/Home";
+import Simulator from "./pages/Simulator";
+import Team from "./pages/Team";
 
 export default function App() {
   return (

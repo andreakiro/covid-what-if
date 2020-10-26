@@ -1,8 +1,7 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
-import { BoxParameters } from "./BoxParameters";
-import { GraphParameters } from "./GraphParameters";
-import { InputsParameters } from "./InputsParameters";
-import { send } from "../API";
+import React, { createContext, useContext, useEffect } from "react";
+import { BoxParameters } from "./simulator/BoxParameters";
+import { GraphParameters } from "./simulator/GraphParameters";
+import { InputsParameters } from "./simulator/InputsParameters";
 
 const Context = createContext(null);
 
@@ -27,8 +26,11 @@ export function getParameters() {
 export default function ParameterProvider(props) {
   let parameters = getParameters();
 
-  useEffect(() => parameters.graphParams.updateData(), [parameters.inputsParams.country, parameters.boxParams.level]);
-  
+  useEffect(() => parameters.graphParams.updateData(), [
+    parameters.inputsParams.country,
+    parameters.boxParams.level,
+  ]);
+
   return (
     <Context.Provider value={parameters}>{props.children}</Context.Provider>
   );
