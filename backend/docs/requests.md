@@ -18,8 +18,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ... <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **`p8`** time serie array. Format can be modified. <br>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Note that the time serie length is the difference `until` - `from` + 1
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The first element in a time-serie will be the level for the policy on day `from`
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Note that the time serie length is the difference `until` - `from` + 1 <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The first element in a time-serie will be the level for the policy on day `from` <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The last element in a time-serie will be the level for the policy on day `until`
 
 &nbsp;&nbsp;&nbsp; `demographics` some other parameters that can be useful in the future. Optional.
