@@ -1,8 +1,8 @@
 # Requests architecture
 
-`model-id` is just to identify which model to use. Useful if we create new models.
+**`model-id`** is just to identify which model to use. Useful if we create new models.
 
-`args` contains all the input parameters for the request.
+**`args`** contains all the input parameters for the request.
 
 &nbsp;&nbsp;&nbsp; **`country`** speaks for itself
 
@@ -14,8 +14,8 @@
 &nbsp;&nbsp;&nbsp; **`policies`** defines each policy level in a time serie.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **`p1`** time serie array. Format can be modified. <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **NB** : p1.length() == daysInInterval(until - from) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The first element in the time-serie will be the level for p1 on day `from`
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ***NB*** : p1.length() == daysInInterval(until - from) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The first element in the time-serie will be the level for p1 on day `from`
 
 &nbsp;&nbsp;&nbsp; `demographics` some other parameters that can be useful in the future. Optional.
 
