@@ -42,17 +42,17 @@ Below is the squeleton of the frontend requests.
 
 `args` contains all the input parameters for the request.
 
-`country` speaks for itself
+> `country` speaks for itself
 
-`time-frame` defines the bounds of the plot. Only need to compute prediction in this range.
+> `time-frame` defines the bounds of the plot. Only need to compute prediction in this range.
 
-`from` speaks for itself. Format can be modified. Inclusive.
-`until` speaks for itself. Format can be modified. Inclusive.
+>> `from` speaks for itself. Format can be modified. Inclusive.
+>> `until` speaks for itself. Format can be modified. Inclusive.
 
-`policies` defines each policy level in a time serie.
+> `policies` defines each policy level in a time serie.
 
-`p1` time serie array. Format can be modified. 
-**NB** : p1.length() == daysInInterval(until - from)
-The first element in the time-serie will be the level for p1 on day `from`
+>> `p1` time serie array. Format can be modified. 
+>> **NB** : p1.length() == daysInInterval(until - from)
+>> The first element in the time-serie will be the level for p1 on day `from`
 
-`demographics` some other parameters that can be useful in the future. Optional.
+> `demographics` some other parameters that can be useful in the future. Optional.
