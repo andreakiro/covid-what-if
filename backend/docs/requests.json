@@ -1,0 +1,28 @@
+{
+    "model-id": "hybrid",
+
+    "args": {    
+        "country": "country",
+        
+        "time-frame": {
+            "from": "12.02.2020",
+            "until": "15.06.2020"
+        },
+        
+        "policies": {
+            "p1": "[time-serie]",
+            "p2": "[time-serie]",
+            "p3": "[time-serie]",
+            "p4": "[time-serie]",
+            "p5": "[time-serie]",
+            "p6": "[time-serie]",
+            "p7": "[time-serie]",
+            "p8": "[time-serie]"
+        },
+
+        "demographics": {
+            "gdp": "val",
+            "density": "val"
+        }
+    }
+}
