@@ -28,8 +28,8 @@ export default function Nav({ currentPage }) {
               <div class="flex-shrink-0">
                 <img
                   class="h-8 w-8"
-                  src="https://tailwindui.com/img/logos/workflow-mark-on-dark.svg"
-                  alt="Workflow logo"
+                  src="ressources/workflow-mark-on-dark.svg"
+                  alt="Logo"
                 />
               </div>
               <div class="hidden md:block">
