@@ -94,8 +94,11 @@ function InputDatePicker({
 }
 
 export default function Inputs(props) {
-  let { inputsParams } = useParameters();
-  let { setCountry, from, setFrom, until, setUntil } = inputsParams;
+  let {
+    values: { from, until },
+    functions: { setCountry, setFrom, setUntil },
+  } = useParameters();
+
   let [lock, setLock] = useState(null);
 
   return (

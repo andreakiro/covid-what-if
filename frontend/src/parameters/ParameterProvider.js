@@ -1,6 +1,5 @@
-import React, { createContext, useContext, useEffect } from "react";
+import React, { createContext, useContext } from "react";
 import { BoxParameters } from "./simulator/BoxParameters";
-import { GraphParameters } from "./simulator/GraphParameters";
 import { InputsParameters } from "./simulator/InputsParameters";
 
 const Context = createContext(null);
@@ -12,24 +11,35 @@ export function useParameters() {
 export function getParameters() {
   let boxParams = BoxParameters();
   let inputsParams = InputsParameters();
-  let graphParams = GraphParameters();
 
   let parameters = {
-    boxParams,
-    inputsParams,
-    graphParams,
+    values: {
+      ...boxParams.values,
+      ...inputsParams.values,
+    },
+    functions: {
+      ...boxParams.functions,
+      ...inputsParams.functions,
+    },
   };
 
   return parameters;
 }
 
 export default function ParameterProvider(props) {
-  let parameters = getParameters();
+  let boxParams = BoxParameters();
+  let inputsParams = InputsParameters();
 
-  useEffect(() => parameters.graphParams.updateData(), [
-    parameters.inputsParams.country,
-    parameters.boxParams.level,
-  ]);
+  let parameters = {
+    values: {
+      ...boxParams.values,
+      ...inputsParams.values,
+    },
+    functions: {
+      ...boxParams.functions,
+      ...inputsParams.functions,
+    },
+  };
 
   return (
     <Context.Provider value={parameters}>{props.children}</Context.Provider>

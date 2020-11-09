@@ -6,12 +6,16 @@ export function InputsParameters() {
   let [until, setUntil] = useState(null);
 
   let inputsParams = {
-    country,
-    setCountry,
-    from,
-    setFrom,
-    until,
-    setFrom,
+    values: {
+      country,
+      from,
+      until,
+    },
+    functions: {
+      setCountry,
+      setFrom,
+      setUntil,
+    },
   };
 
   return inputsParams;

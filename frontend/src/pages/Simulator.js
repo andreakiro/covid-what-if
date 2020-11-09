@@ -1,6 +1,6 @@
 import React from "react";
 import Box from "../components/simulator/Box";
-import Graph from "../components/simulator/Graph";
+import GraphManager from "../components/simulator/GraphManager";
 import Inputs from "../components/simulator/Inputs";
 import Policies from "../components/simulator/Policies";
 import ParameterProvider from "../parameters/ParameterProvider";
@@ -14,7 +14,7 @@ export default function Simulator() {
             <Inputs />
           </div>
           <div className="w-2/3 flex justify-center">
-            <Graph />
+            <GraphManager />
           </div>
         </div>
         <div className="flex pt-8">

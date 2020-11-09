@@ -12,8 +12,6 @@ export function BoxParameters() {
   let [height, setHeight] = useState(2);
   let [level, setLevel] = useState(initialize(height));
 
-  // useEffect(() => setLevel(initialize(height)), [height, setLevel]);
-
   let cycle = (i) => {
     setLevel((level) =>
       level.map((val, index) => (index === i ? singleCycle(val) : val))
@@ -33,11 +31,15 @@ export function BoxParameters() {
   };
 
   let boxParams = {
-    height,
-    level,
-    cycle,
-    reset,
-    increase,
+    values: {
+      height,
+      level,
+    },
+    functions: {
+      cycle,
+      reset,
+      increase,
+    },
   };
 
   return boxParams;

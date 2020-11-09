@@ -38,8 +38,11 @@ function BoxButton({ text, level, cycle }) {
 }
 
 export default function Box({ boxes }) {
-  let { boxParams } = useParameters();
-  let { height, level, cycle, reset, increase } = boxParams;
+  let {
+    values: { height, level },
+    functions: { cycle, increase, reset },
+  } = useParameters();
+
   let [row, setRow] = useState(Array.from({ length: boxes }, (_, i) => i + 1));
   let [width, setWidth] = useState(
     Array.from({ length: height }, (_, i) => i + 1)
@@ -73,12 +76,12 @@ export default function Box({ boxes }) {
       <div class="text-right w-4/5">
         <Label text="Click on a box to increase policy level" />
       </div>
-      <button
+      {/* <button
         onClick={() => reset()}
         class="inline-flex justify-center bg-white px-4 py-2 text-sm leading-5 font-medium text-gray-700 w-1/5 rounded-md border border-gray-500 px-4 py-2 text-sm leading-5 font-medium hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150"
       >
         Reset
-      </button>
+      </button> */}
       {/* <button
         onClick={() => increase(1)}
         class="inline-flex justify-center bg-white px-4 py-2 text-sm leading-5 font-medium text-gray-700 w-1/5 rounded-md border border-gray-500 px-4 py-2 text-sm leading-5 font-medium hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150"
