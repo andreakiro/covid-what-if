@@ -17,19 +17,19 @@ function BoxButton({ text, level, cycle }) {
     <button
       onClick={() => cycle()}
       class={`inline-flex justify-center ${
-        level == 0
+        level === 0
           ? "bg-white"
-          : level == 1
+          : level === 1
           ? "bg-yellow-500"
-          : level == 2
+          : level === 2
           ? "bg-orange-500"
           : "bg-red-600"
       } px-4 py-2 text-sm leading-5 font-medium ${
-        level == 0 ? "text-gray-700" : "text-white"
+        level === 0 ? "text-gray-700" : "text-white"
       } ${
-        level == 0 ? "text-grey-700" : "text-white"
+        level === 0 ? "text-grey-700" : "text-white"
       } w-full rounded-md border ${
-        level == 0 ? "border-gray-500" : ""
+        level === 0 ? "border-gray-500" : ""
       } px-4 py-2 text-sm leading-5 font-medium hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150`}
     >
       {text}
@@ -40,11 +40,11 @@ function BoxButton({ text, level, cycle }) {
 export default function Box({ boxes }) {
   let {
     values: { height, level },
-    functions: { cycle, increase, reset },
+    functions: { cycle },
   } = useParameters();
 
-  let [row, setRow] = useState(Array.from({ length: boxes }, (_, i) => i + 1));
-  let [width, setWidth] = useState(
+  let [row, ] = useState(Array.from({ length: boxes }, (_, i) => i + 1));
+  let [width, ] = useState(
     Array.from({ length: height }, (_, i) => i + 1)
   );
 

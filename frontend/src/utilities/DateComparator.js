@@ -1,5 +1,4 @@
 export function untilIsBeforeFrom(from, until) {
-  let bool = false;
   if (from === null || until === null) return false;
   let dayFrom = parseInt(from.substring(0, 2));
   let monthFrom = parseInt(from.substring(3, 5));

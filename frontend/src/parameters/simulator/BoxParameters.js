@@ -9,7 +9,7 @@ function initialize(height) {
 }
 
 export function BoxParameters() {
-  let [height, setHeight] = useState(2);
+  let [height, ] = useState(2);
   let [level, setLevel] = useState(initialize(height));
 
   let cycle = (i) => {

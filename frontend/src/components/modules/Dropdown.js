@@ -69,6 +69,8 @@ export default function Dropdown({
                   if (a === "Global") return -1;
                   else if (b === "Global") return 1;
                   else return a.toLowerCase() < b.toLowerCase() ? -1 : 1;
+                } else {
+                  return -1; // don't sort items
                 }
               })
               .map((item) => {
@@ -82,6 +84,8 @@ export default function Dropdown({
                       {item}
                     </button>
                   );
+                } else {
+                  return null; // avoid array-callback-return error
                 }
               })}
           </div>

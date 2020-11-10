@@ -64,7 +64,7 @@ export default function Graph({ bigdata }) {
       .attr("stroke-width", 1)
       .attr("stroke", "orange")
       .style("stroke-dasharray", "5,5");
-  }, [ref, bigdata]);
+  }, [ref, bigdata, margin]);
 
   return <svg ref={ref} className="w-full h-auto"></svg>;
 }

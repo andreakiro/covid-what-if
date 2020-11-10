@@ -13,19 +13,19 @@ function dateIsValid(date, y1, y2) {
   let bool = false;
   for (let i = 0; i < date.length; i++) {
     if (bool) return true;
-    if (i == 2 || i == 5) continue;
+    if (i === 2 || i === 5) continue;
     bool |= !isNumeric(date.substring(i, i + 1));
   }
 
   // check that char 3 and 6 are dots
   if (date.length >= 6) {
-    bool |= date.substring(5, 6) != ".";
+    bool |= date.substring(5, 6) !== ".";
   } else if (date.length >= 3) {
-    bool |= date.substring(2, 3) != ".";
+    bool |= date.substring(2, 3) !== ".";
   }
 
   // check coherence for YYYY
-  if (date.length == 10) {
+  if (date.length === 10) {
     let year = parseInt(date.substring(6, 10));
     bool |= year > y2 || year < y1;
   }
@@ -62,7 +62,7 @@ export default function DatePicker({
   };
 
   let invalidInputLogic = (date) => {
-    if (valid(date) || date == "") {
+    if (valid(date) || date === "") {
       setInvalidInput(false);
     } else {
       setInvalidInput(true);
@@ -70,7 +70,7 @@ export default function DatePicker({
   };
 
   let inputProgressLogic = (date) => {
-    if (date.length == 10 || date == "") {
+    if (date.length === 10 || date === "") {
       setInputProgress(false);
     } else {
       setInputProgress(true);
@@ -86,7 +86,7 @@ export default function DatePicker({
   };
 
   let closeLogic = (date) => {
-    if (date.length == 10) {
+    if (date.length === 10) {
       if (valid(date)) {
         onClose(date);
       } else {
