@@ -53,7 +53,14 @@ function InputButton({ text, setLock, animation, modal }) {
   );
 }
 
-function InputDropdown({ text, items, lock, setLock, setGlobalInput, defaultcountry=null }) {
+function InputDropdown({
+  text,
+  items,
+  lock,
+  setLock,
+  setGlobalInput,
+  defaultcountry = null,
+}) {
   return (
     <Dropdown
       defaultcountry={defaultcountry}
@@ -94,9 +101,9 @@ function InputDatePicker({
   );
 }
 
-export default function Inputs(props) {
+export default function Inputs({ countries }) {
   let {
-    values: { from, until },
+    values: { country, from, until },
     functions: { setCountry, setFrom, setUntil },
   } = useParameters();
 
@@ -108,8 +115,8 @@ export default function Inputs(props) {
         <Label text="Country" />
         <InputDropdown
           text="Select"
-          items={["America", "Switzerland"]}
-          defaultcountry="Switzerland"
+          items={countries}
+          defaultcountry={country}
           sortItems={true}
           lock={lock}
           setLock={setLock}

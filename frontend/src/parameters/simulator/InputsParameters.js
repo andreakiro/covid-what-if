@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export function InputsParameters() {
-  let [country, setCountry] = useState(null);
+  let [country, setCountry] = useState("Switzerland");
   let [from, setFrom] = useState(null);
   let [until, setUntil] = useState(null);
 

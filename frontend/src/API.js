@@ -30,6 +30,10 @@ async function request(params, model = "hybrid") {
   return response;
 }
 
+function countries() {
+  return ["America", "Switzerland", "Italy", "France"];
+}
+
 // Utilities : format checks
 
 function validInput(params) {
@@ -38,8 +42,8 @@ function validInput(params) {
   if (! ('time-frame.from' in params)) return false;
   if (! ('time-frame.until' in params)) return false;
   if (! ('policies' in params)) return false;
-  for (i = 1; i < 9; i ++)
-    if (! (('policies.c' + i) in params)) return false;
+  // for (i = 1; i < 9; i ++)
+  //   if (! (('policies.c' + i) in params)) return false;
   return true;
 }
 
