@@ -53,9 +53,10 @@ function InputButton({ text, setLock, animation, modal }) {
   );
 }
 
-function InputDropdown({ text, items, lock, setLock, setGlobalInput }) {
+function InputDropdown({ text, items, lock, setLock, setGlobalInput, defaultcountry=null }) {
   return (
     <Dropdown
+      defaultcountry={defaultcountry}
       textselector={text}
       items={items}
       open={lock === text}
@@ -107,7 +108,8 @@ export default function Inputs(props) {
         <Label text="Country" />
         <InputDropdown
           text="Select"
-          items={["Global", "America", "Switzerland"]}
+          items={["America", "Switzerland"]}
+          defaultcountry="Switzerland"
           sortItems={true}
           lock={lock}
           setLock={setLock}

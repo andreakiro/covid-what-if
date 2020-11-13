@@ -7,8 +7,9 @@ export default function Dropdown({
   open,
   onOpen,
   onClose,
+  defaultcountry = null
 }) {
-  let [selected, setSelected] = useState(null);
+  let [selected, setSelected] = useState(defaultcountry);
   let onItemClicked = (name) => {
     onClose(name);
     setSelected(name);
