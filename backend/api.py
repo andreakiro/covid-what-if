@@ -5,16 +5,39 @@ from modeling/unified.py import *
 app = Flask(__name__)
 CORS(app)
 
+update_func = None
+
 def api_load(args):
-    
-    return 0
+    country = args['country']
+    tfrom = args['time-frame']['from']
+    tuntil = args['time-frame']['until']
+    _, sub_data, update = load(country, tfrom, tuntil)
+    policies, target, dates, pred = sub_data
+    update_func = update
+    return {
+        "response": {
+            "r0": pred,
+            "target": target,
+            "dates": dates,
+            "policies": policies
+        }
+    }
 
 def api_update(args):
-    return 0
+    country = args['country']
+    tfrom = args['time-frame']['from']
+    tuntil = args['time-frame']['until']
+    policies = args['policies']
+    pred, target = update_func(country, tfrom, tuntil, policies)
+    return {
+        "response": {
+            "r0": pred,
+            "target": target
+        }
+    }
 
 @app.route('/', methods=['POST'])
 def api():
-    # Get request
     body = request.json
     
     if (body['request'] == 'load'):
