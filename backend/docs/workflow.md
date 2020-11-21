@@ -13,15 +13,15 @@
 
 ```
 {
+    "request": "load",
+    
     "model-id": "hybrid",
-
-    "args": {    
-        "country": "country",
+  
+    "country": "country",
         
-        "time-frame": {
-            "from": "12.02.2020",
-            "until": "15.06.2020"
-        }
+    "time-frame": {
+        "from": "12.02.2020",
+        "until": "15.06.2020"
     }
 }
 ```
@@ -57,6 +57,8 @@
 
 ```
 {
+    "request": "update",
+
     "country": "country", // for integrity
         
     "time-frame": {
