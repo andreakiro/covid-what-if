@@ -66,6 +66,7 @@ function InputDropdown({
       defaultcountry={defaultcountry}
       textselector={text}
       items={items}
+      sortItems={true}
       open={lock === text}
       onOpen={() => setLock(text)}
       onClose={(c) => {

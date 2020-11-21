@@ -30,7 +30,7 @@ async function request(params, model = "hybrid") {
   return response;
 }
 
-function countries() {
+export function countries() {
   return ["America", "Switzerland", "Italy", "France"];
 }
 
