@@ -5,7 +5,11 @@ from modeling/unified.py import *
 app = Flask(__name__)
 CORS(app)
 
-def load():
+def api_load(args):
+    
+    return 0
+
+def api_update(args):
     return 0
 
 @app.route('/', methods=['POST'])
@@ -14,23 +18,11 @@ def api():
     body = request.json
     
     if (body['request'] == 'load'):
-        country = body['args']['country']
-        tfrom = body['args'][]
-
-    # Retrieve parameters
-    country = body['country']
-    tfFrom = body['time-frame']['from'] # Format 'DD.MM.YYYY'
-    tfUntil = body['time-frame']['until'] # Format 'DD.MM.YYYY'
-    policies = body['policies']
-
-    # Call the model
-    r0 = getR0(getCode(country), tfFrom, tfUntil, policies)
-    
-    return {
-        "response": {
-            "r0": r0
-        }
-    }
+        return api_load(body['args'])
+    else if (body['request'] == 'update'):
+        return api_update(body['args'])
+    else:
+        return { "reponse": "invalid request" }
 
 @app.route('/', methods=['POST'])
 def hey():
