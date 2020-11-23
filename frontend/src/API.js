@@ -1,13 +1,3 @@
-export async function send(params) {
-  let request = {
-    method: "POST",
-    headers: { "Content-Type": "application/JSON" },
-    body: JSON.stringify(params),
-  };
-  let result = await fetch("http://localhost:5000", request).json();
-  return result;
-}
-
 export async function load(params, model = "hybrid") {
   let content = {
     "request": "load",
@@ -17,15 +7,16 @@ export async function load(params, model = "hybrid") {
     }
   };
 
+  console.log('Hey this is the request');
+  console.log(content);
+
   let request = {
     method: "POST",
     headers: { "Content-Type": "application/JSON" },
     body: JSON.stringify(content),
   };
 
-  let response = await fetch("http://localhost:5000", request).json();
-
-  return response;
+  return await (await fetch("http://localhost:5000", request)).json();
 }
 
 export async function update(params) {
@@ -45,23 +36,26 @@ export async function update(params) {
     body: JSON.stringify(content),
   };
 
-  let response = await fetch("http://localhost:5000", request).json();
-  return response;
+  return await (await fetch("http://localhost:5000", request)).json();
 }
 
-export function countries() {
-  return ["America", "Switzerland", "Italy", "France"];
+export async function init() {
+  let request = {
+    method: "POST",
+    headers: { "Content-Type": "application/JSON" },
+    body: JSON.stringify({"request": "init"}),
+  };
+  let response = await (await fetch("http://localhost:5000", request)).json();
+  return response;
 }
 
 // Utilities : format checks
 
 function validInput(params) {
   if (! ('country' in params)) return false;
-  if (! ('time-frame' in params)) return false;
-  if (! ('time-frame.from' in params)) return false;
-  if (! ('time-frame.until' in params)) return false;
+  if (! ('tframe' in params)) return false;
+  if (! ('from' in params.tframe)) return false;
+  if (! ('until' in params.tframe)) return false;
   if (! ('policies' in params)) return false;
-  // for (i = 1; i < 9; i ++)
-  //   if (! (('policies.c' + i) in params)) return false;
   return true;
 }
