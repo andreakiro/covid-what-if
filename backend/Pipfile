@@ -11,6 +11,11 @@ pandas = "*"
 numpy = "*"
 flask = "*"
 flask-cors = "*"
+pyyaml = "*"
+torch = "*"
+pytorch-lightning = "*"
+pycountry = "*"
+pycountry-convert = "*"
 
 [requires]
 python_version = "3.8"
