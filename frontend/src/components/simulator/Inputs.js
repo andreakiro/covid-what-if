@@ -10,7 +10,7 @@ function Label({ text }) {
   return (
     <label
       id="listbox-label"
-      class="block text-sm leading-5 font-medium text-gray-700"
+      className="block text-sm leading-5 font-medium text-gray-700"
     >
       {text}
     </label>
@@ -21,7 +21,7 @@ function InputButton({ text, setLock, animation, modal }) {
   let [active, setActive] = useState(false);
   return (
     <div>
-      <span class="rounded-md shadow-sm">
+      <span className="rounded-md shadow-sm">
         <button
           onClick={async () => {
             if (animation && !modal) {
@@ -34,7 +34,7 @@ function InputButton({ text, setLock, animation, modal }) {
               setActive(true);
             }
           }}
-          class={`inline-flex justify-center w-full rounded-md border border-${
+          className={`inline-flex justify-center w-full rounded-md border border-${
             active && !modal ? "green" : "gray"
           }-500 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150`}
         >

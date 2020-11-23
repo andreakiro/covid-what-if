@@ -5,7 +5,7 @@ function Label({ text }) {
   return (
     <label
       id="listbox-label"
-      class="block text-sm leading-5 font-medium text-gray-700"
+      className="block text-sm leading-5 font-medium text-gray-700"
     >
       {text}
     </label>
@@ -16,7 +16,7 @@ function BoxButton({ text, level, cycle }) {
   return (
     <button
       onClick={() => cycle()}
-      class={`inline-flex justify-center ${
+      className={`inline-flex justify-center ${
         level === 0
           ? "bg-white"
           : level === 1
@@ -43,29 +43,29 @@ export default function Box({ boxes }) {
     functions: { cycle },
   } = useParameters();
 
-  let [row, ] = useState(Array.from({ length: boxes }, (_, i) => i + 1));
-  let [width, ] = useState(
-    Array.from({ length: height }, (_, i) => i + 1)
-  );
+  let [row] = useState(Array.from({ length: boxes }, (_, i) => i + 1));
+  let [width] = useState(Array.from({ length: height }, (_, i) => i + 1));
 
   return (
-    <div class="flex flex-col items-center space-y-2 w-full">
-      <div class="text-left w-4/5">
+    <div className="flex flex-col items-center space-y-2 w-full">
+      <div className="text-left w-4/5">
         <Label text="Each box represent 1/8 of the time frame" />
       </div>
-      <div class="w-4/5 rounded-md border border-gray-600 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150">
+      <div className="w-4/5 rounded-md border border-gray-600 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150">
         <div className="flex flex-col space-y-2 w-full">
           {width.map((y) => {
             return (
-              <div class="flex justify-center w-full space-x-2">
+              <div key={y} className="flex justify-center w-full space-x-2">
                 {row.map((x) => {
                   let i = ((y - 1) << 3) + (x - 1);
                   return (
-                    <BoxButton
-                      text={x}
-                      level={level[i]}
-                      cycle={() => cycle(i)}
-                    />
+                    <React.Fragment key={i}>
+                      <BoxButton
+                        text={x}
+                        level={level[i]}
+                        cycle={() => cycle(i)}
+                      />
+                    </React.Fragment>
                   );
                 })}
               </div>
@@ -73,18 +73,18 @@ export default function Box({ boxes }) {
           })}
         </div>
       </div>
-      <div class="text-right w-4/5">
+      <div className="text-right w-4/5">
         <Label text="Click on a box to increase policy level" />
       </div>
       {/* <button
         onClick={() => reset()}
-        class="inline-flex justify-center bg-white px-4 py-2 text-sm leading-5 font-medium text-gray-700 w-1/5 rounded-md border border-gray-500 px-4 py-2 text-sm leading-5 font-medium hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150"
+        className="inline-flex justify-center bg-white px-4 py-2 text-sm leading-5 font-medium text-gray-700 w-1/5 rounded-md border border-gray-500 px-4 py-2 text-sm leading-5 font-medium hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150"
       >
         Reset
       </button> */}
       {/* <button
         onClick={() => increase(1)}
-        class="inline-flex justify-center bg-white px-4 py-2 text-sm leading-5 font-medium text-gray-700 w-1/5 rounded-md border border-gray-500 px-4 py-2 text-sm leading-5 font-medium hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150"
+        className="inline-flex justify-center bg-white px-4 py-2 text-sm leading-5 font-medium text-gray-700 w-1/5 rounded-md border border-gray-500 px-4 py-2 text-sm leading-5 font-medium hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150"
       >
         +
       </button> */}

@@ -2,11 +2,11 @@ import React from "react";
 
 function Label({ text, link }) {
   return (
-    <div class="flex justify-center">
-      <span class="rounded-md shadow-sm">
+    <div className="flex justify-center">
+      <span className="rounded-md shadow-sm">
         <a
           href={link}
-          class="inline-flex justify-center w-full rounded-md border border-gray-500 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-blue-600 hover:border-blue-600"
+          className="inline-flex justify-center w-full rounded-md border border-gray-500 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-blue-600 hover:border-blue-600"
         >
           {text}
         </a>
@@ -17,9 +17,9 @@ function Label({ text, link }) {
 
 function Teammate({ fullName, position, picture, link }) {
   return (
-    <div class="flex flex-col items-center space-y-4 w-100">
+    <div className="flex flex-col items-center space-y-4 w-100">
       <img
-        class="inline-block h-20 w-20 rounded-full text-white shadow-solid"
+        className="inline-block h-20 w-20 rounded-full text-white shadow-solid"
         src={picture}
         alt=""
       ></img>

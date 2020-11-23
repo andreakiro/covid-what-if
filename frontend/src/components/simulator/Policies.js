@@ -5,7 +5,7 @@ function Label({ text }) {
   return (
     <label
       id="listbox-label"
-      class="block text-sm leading-5 font-medium text-gray-700"
+      className="block text-sm leading-5 font-medium text-gray-700"
     >
       {text}
     </label>
@@ -14,7 +14,7 @@ function Label({ text }) {
 
 function LabelBox({ text }) {
   return (
-    <div class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700">
+    <div className="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700">
       <Label text={text} />
     </div>
   );
