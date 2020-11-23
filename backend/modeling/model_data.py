@@ -9,7 +9,7 @@ import pycountry_convert as pc
 import pickle as pkl
 import math
 
-with open('epi_config.yaml', 'r') as file:
+with open('modeling/epi_config.yaml', 'r') as file:
     config = yaml.load(file, Loader=yaml.FullLoader)
 
 no_norm_cols = [
@@ -128,7 +128,7 @@ def normalize_but_country(data, train_cols, country) :
 
 def get_model_data(train_cols, target_col, group_attr='iso_code', max_r=config['max_r'],
                     filename='model_data_owid.csv', augment_frac=0, dropna=True, normalize=False, r_shift=config['r_shift']):
-    data = pd.read_csv('../data/merged_data/' + filename, parse_dates=['date']).set_index('date')
+    data = pd.read_csv('data/merged_data/' + filename, parse_dates=['date']).set_index('date')
 
     # Generate shifted columns for r estimations
     data['r_estim'] = data['r_estim'].apply(lambda x: np.nan if x >= max_r else x)

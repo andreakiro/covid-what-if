@@ -2,26 +2,21 @@ import yaml
 import pandas as pd
 import numpy as np
 import datetime
-import pycountry
 from numpy.random import seed as npseed
 import pickle as pkl
-from hybrid import *
+from modeling.hybrid import *
 import os
 import torch
 import torch.nn as nn
 from tqdm import tqdm_notebook
-
-from model_data import get_label, normalize_but_country, get_model_data
+from modeling.model_data import get_label, normalize_but_country, get_model_data
 import pytorch_lightning as pl
 from pytorch_lightning import seed_everything
-import plotly.graph_objects as go # pip install --user plotly
-import seaborn as sns
-torch.cuda.set_device(0)
 
-with open('model_config.yaml', 'r') as file:
+with open('modeling/model_config.yaml', 'r') as file:
     config = yaml.load(file, Loader=yaml.FullLoader)
     
-with open('model_features.yaml', 'r') as file:
+with open('modeling/model_features.yaml', 'r') as file:
     features = yaml.load(file, Loader=yaml.FullLoader)
 
 seed_everything(config['seed'])
@@ -95,7 +90,7 @@ def load(country, tfrom=None, tuntil=None) :
     
     # Load model
     print("Loading model..." + " "*20, end='\r')
-    m = HybridLSTM.load_from_checkpoint(f"models/{country}/model.ckpt")
+    m = HybridLSTM.load_from_checkpoint(f"modeling/models/{country}/model.ckpt")
     m.eval()
     
     policies = features['policies']

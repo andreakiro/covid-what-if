@@ -8,10 +8,9 @@ from pytorch_lightning.callbacks import EarlyStopping, ModelCheckpoint
 from pytorch_lightning.loggers import TensorBoardLogger
 from pytorch_lightning import seed_everything
 from argparse import Namespace
-
 import numpy as np
 
-with open('model_config.yaml', 'r') as file:
+with open('modeling/model_config.yaml', 'r') as file:
     config = yaml.load(file, Loader=yaml.FullLoader)
 
 seed_everything(config['seed'])
