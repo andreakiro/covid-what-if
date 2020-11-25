@@ -13,3 +13,11 @@ export function untilIsBeforeFrom(from, until) {
   }
   return false;
 }
+
+export function minus(from, until) {
+  if (from === null && until === null) {
+    return 32;
+  } else {
+    return 160;
+  }
+}
