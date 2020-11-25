@@ -4,13 +4,14 @@ function singleCycle(val) {
   return (val + 1) % 4;
 }
 
-function initialize(height) {
+function initialize(height, width) {
   return Array(height << 3).fill(0);
 }
 
 export function BoxParameters() {
-  let [height, ] = useState(2);
-  let [level, setLevel] = useState(initialize(height));
+  let [height, setHeight] = useState(2);
+  let [width, setWidth] = useState(8);
+  let [level, setLevel] = useState(initialize(height, width));
 
   let cycle = (i) => {
     setLevel((level) =>
@@ -19,7 +20,7 @@ export function BoxParameters() {
   };
 
   let reset = () => {
-    setLevel(initialize(height));
+    setLevel(initialize(height, width));
   };
 
   let increase = (row) => {
@@ -33,14 +34,17 @@ export function BoxParameters() {
   let boxParams = {
     values: {
       height,
+      width,
       level,
     },
     functions: {
       cycle,
       reset,
       increase,
+      setHeight,
+      setWidth
     },
   };
-
+  
   return boxParams;
 }
