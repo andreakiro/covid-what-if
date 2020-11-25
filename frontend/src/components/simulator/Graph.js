@@ -23,7 +23,8 @@ export default function Graph({ bigdata }) {
       .append("g")
       .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-    const data = bigdata;
+    const data = bigdata[0];
+    const target = bigdata[1];
 
     // x axis
     const x = d3
@@ -41,7 +42,7 @@ export default function Graph({ bigdata }) {
 
     svg.append("g").call(d3.axisLeft(y));
 
-    // add the  line
+    // add the  prediction
     const line = d3
       .line()
       .x((d) => x(d.date))
@@ -54,6 +55,20 @@ export default function Graph({ bigdata }) {
       .attr("stroke", "green")
       .attr("stroke-width", 1.5)
       .attr("d", line);
+
+    // add the target
+    const line2 = d3
+      .line()
+      .x((d) => x(d.date))
+      .y((d) => y(d.value));
+
+    svg
+      .append("path")
+      .datum(target)
+      .attr("fill", "none")
+      .attr("stroke", "blue")
+      .attr("stroke-width", 1.5)
+      .attr("d", line2);
 
     svg
       .append("line")
