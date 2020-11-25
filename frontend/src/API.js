@@ -7,8 +7,7 @@ export async function load(params, model = "hybrid") {
     }
   };
 
-  console.log('Hey this is the request');
-  console.log(content);
+  console.log('Load request', content);
 
   let request = {
     method: "POST",
