@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import Contribute from "./pages/Contribute";
 import Home from "./pages/Home";
-import Simulator from "./pages/Simulator";
 import Team from "./pages/Team";
+import SimulatorContainer from "./pages/SimulatorContainer"
 
 export default function App() {
   return (
@@ -27,7 +27,7 @@ export default function App() {
         </Route>
         <Route path="/">
           <Layout currentPage="simulator">
-            <Simulator />
+            <SimulatorContainer />
           </Layout>
         </Route>
       </Switch>
