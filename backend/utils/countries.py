@@ -12,9 +12,7 @@ def getCountries():
 def getAvailableCountries():
     countries = []
     root = os.getcwd()
-    print(root)
     dir = root + '/modeling/models'
-    print(dir)
     for path, subdirs, files in os.walk(dir):
         for name in subdirs:
             print(name)
