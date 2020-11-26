@@ -7,15 +7,13 @@ export async function load(params, model = "hybrid") {
     }
   };
 
-  console.log('Load request', content);
-
   let request = {
     method: "POST",
     headers: { "Content-Type": "application/JSON" },
     body: JSON.stringify(content),
   };
 
-  return await (await fetch("http://localhost:5000", request)).json();
+  return (await (await fetch("http://localhost:5000", request)).json()).response;
 }
 
 export async function update(params) {

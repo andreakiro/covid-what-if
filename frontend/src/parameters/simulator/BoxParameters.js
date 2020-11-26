@@ -4,7 +4,7 @@ function singleCycle(val) {
   return (val + 1) % 4;
 }
 
-function initialize(height, width) {
+export function initialize(height, width) {
   return Array(height << 3).fill(0);
 }
 

@@ -92,6 +92,7 @@ function InputDatePicker({
       onOpen={() => setLock(text)}
       onClose={(v) => {
         setLock(null);
+        console.log('here', v);
         if (v !== null) {
           setGlobalInput(v);
         }
@@ -102,13 +103,12 @@ function InputDatePicker({
   );
 }
 
-export default function Inputs({ countries }) {
-  let {
-    values: { country, from, until },
-    functions: { setCountry, setFrom, setUntil },
-  } = useParameters();
-
+export default function Inputs() {
+  let [state, dispatch] = useParameters();
   let [lock, setLock] = useState(null);
+
+  let { country, countries, tframe } = state;
+  let { from, until } = tframe;
 
   return (
     <div className="flex flex-col space-y-4 w-32">
@@ -121,7 +121,12 @@ export default function Inputs({ countries }) {
           sortItems={true}
           lock={lock}
           setLock={setLock}
-          setGlobalInput={(c) => setCountry(c)}
+          setGlobalInput={(x) =>
+            dispatch({
+              type: "setcountry",
+              country: x,
+            })
+          }
         />
       </div>
 
@@ -131,7 +136,12 @@ export default function Inputs({ countries }) {
           text="From"
           lock={lock}
           setLock={setLock}
-          setGlobalInput={(from) => setFrom(from)}
+          setGlobalInput={(x) =>
+            dispatch({
+              type: "setfrom",
+              from: x,
+            })
+          }
           orangeLock={from === null && until !== null}
           redLock={untilIsBeforeFrom(from, until)}
         />
@@ -139,7 +149,12 @@ export default function Inputs({ countries }) {
           text="Until"
           lock={lock}
           setLock={setLock}
-          setGlobalInput={(until) => setUntil(until)}
+          setGlobalInput={(x) =>
+            dispatch({
+              type: "setuntil",
+              until: x,
+            })
+          }
           orangeLock={false}
           redLock={untilIsBeforeFrom(from, until)}
         />

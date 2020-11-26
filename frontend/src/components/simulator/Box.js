@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useParameters } from "../../parameters/ParameterProvider";
 
 function Label({ text }) {
@@ -37,14 +37,14 @@ function BoxButton({ text, level, cycle }) {
   );
 }
 
-export default function Box({ boxes }) {
+export default function Box() {
+  let [state, dispatch] = useParameters();
   let {
-    values: { height, level },
-    functions: { cycle },
-  } = useParameters();
+    box: { height, width, level },
+  } = state;
 
-  let [row] = useState(Array.from({ length: boxes }, (_, i) => i + 1));
-  let [width] = useState(Array.from({ length: height }, (_, i) => i + 1));
+  let column = Array.from({ length: width }, (_, i) => i + 1);
+  let row = Array.from({ length: height }, (_, i) => i + 1);
 
   return (
     <div className="flex flex-col items-center space-y-2 w-full">
@@ -53,17 +53,22 @@ export default function Box({ boxes }) {
       </div>
       <div className="w-4/5 rounded-md border border-gray-600 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150">
         <div className="flex flex-col space-y-2 w-full">
-          {width.map((y) => {
+          {row.map((y) => {
             return (
               <div key={y} className="flex justify-center w-full space-x-2">
-                {row.map((x) => {
+                {column.map((x) => {
                   let i = ((y - 1) << 3) + (x - 1);
                   return (
                     <React.Fragment key={i}>
                       <BoxButton
                         text={x}
                         level={level[i]}
-                        cycle={() => cycle(i)}
+                        cycle={() =>
+                          dispatch({
+                            type: "cycle",
+                            i: i,
+                          })
+                        }
                       />
                     </React.Fragment>
                   );

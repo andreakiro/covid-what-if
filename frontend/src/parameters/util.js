@@ -1,16 +1,27 @@
 import { minus } from "../utilities/DateComparator";
 
 export function policyFromList(policies) {
-  return {
-    c1_level: policies[0],
-    c2_level: policies[1],
-    c3_level: policies[2],
-    c4_level: policies[3],
-    c5_level: policies[4],
-    c6_level: policies[5],
-    c7_level: policies[6],
-    c8_level: policies[7],
-  };
+  return policies === null
+    ? {
+        c1_level: [],
+        c2_level: [],
+        c3_level: [],
+        c4_level: [],
+        c5_level: [],
+        c6_level: [],
+        c7_level: [],
+        c8_level: [],
+      }
+    : {
+        c1_level: policies[0],
+        c2_level: policies[1],
+        c3_level: policies[2],
+        c4_level: policies[3],
+        c5_level: policies[4],
+        c6_level: policies[5],
+        c7_level: policies[6],
+        c8_level: policies[7],
+      };
 }
 
 export function levelFromOrder(level, order, width) {
