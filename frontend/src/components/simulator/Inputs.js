@@ -92,7 +92,6 @@ function InputDatePicker({
       onOpen={() => setLock(text)}
       onClose={(v) => {
         setLock(null);
-        console.log('here', v);
         if (v !== null) {
           setGlobalInput(v);
         }
