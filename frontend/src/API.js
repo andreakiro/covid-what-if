@@ -1,58 +1,31 @@
-export async function load(params, model = "hybrid") {
-  let content = {
-    "request": "load",
-    "args": {
-      "model-id": model,
-      ...params
-    }
-  };
+const SERVER_ADDRESS = "http://localhost:5000";
+const INIT_SOCKET = "/init";
+const LOAD_SOCKET = "/load";
+const UPDATE_SOCKET = "/update";
 
+async function post(socket, content) {
   let request = {
     method: "POST",
     headers: { "Content-Type": "application/JSON" },
     body: JSON.stringify(content),
   };
 
-  return (await (await fetch("http://localhost:5000", request)).json()).response;
+  return await (await fetch(SERVER_ADDRESS.concat(socket), request)).json();
+}
+
+export async function load(params, model = "hybrid") {
+  let content = {
+    "model-id": model,
+    ...params,
+  };
+
+  return post(LOAD_SOCKET, content);
 }
 
 export async function update(params) {
-  if (! validInput(params)) {
-    console.log("Given parameters have wrong format.");
-    return null;
-  }
-
-  let content = {
-    "request": "update",
-    "args": params
-  };
-
-  let request = {
-    method: "POST",
-    headers: { "Content-Type": "application/JSON" },
-    body: JSON.stringify(content),
-  };
-
-  return await (await fetch("http://localhost:5000", request)).json();
+  return post(UPDATE_SOCKET, params);
 }
 
 export async function init() {
-  let request = {
-    method: "POST",
-    headers: { "Content-Type": "application/JSON" },
-    body: JSON.stringify({"request": "init"}),
-  };
-  let response = await (await fetch("http://localhost:5000", request)).json();
-  return response;
-}
-
-// Utilities : format checks
-
-function validInput(params) {
-  if (! ('country' in params)) return false;
-  if (! ('tframe' in params)) return false;
-  if (! ('from' in params.tframe)) return false;
-  if (! ('until' in params.tframe)) return false;
-  if (! ('policies' in params)) return false;
-  return true;
+  return post(INIT_SOCKET);
 }
