@@ -19,6 +19,7 @@ export default function ParameterProvider(props) {
     tframe: {
       from: null,
       until: null,
+      range: 0,
     },
     box: {
       height: 2,
