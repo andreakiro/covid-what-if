@@ -23,7 +23,7 @@ function formatData(values, dates) {
   }));
 }
 
-async function loadData(state, setData, setTarget) {
+async function loadData(state, dispatch, setData, setTarget) {
   let request = {
     uid: state.uid,
     country: state.country,
@@ -36,10 +36,13 @@ async function loadData(state, setData, setTarget) {
   let { pred, target, dates, policies } = await load(request);
   setData(formatData(pred, dates));
   setTarget(formatData(target, dates));
-  // update policies with dispatch
+  dispatch({
+    type: "setpolicies",
+    policies: policies,
+  });
 }
 
-async function updateData(state, setData) {
+async function updateData(state, setData, setTarget) {
   let request = {
     uid: state.uid,
     country: state.country,
@@ -57,14 +60,17 @@ export default function GraphManager() {
   let [state, dispatch] = useParameters();
   let [data, setData] = useState([]);
   let [target, setTarget] = useState([]);
-
   let [oldCountry, setOldCountry] = useState(state.country);
 
   useEffect(() => {
-    if (oldCountry !== state.country) loadData(state, setData, setTarget);
+    if (oldCountry !== state.country)
+      loadData(state, dispatch, setData, setTarget);
     setOldCountry(state.country);
-  }, [state]);
-  // useEffect(() => updateData(parameters.values, setData), [parameters]);
+  }, [state, dispatch, oldCountry]);
+
+  // useEffect(() => {
+  //   updateData(state, setData, setTarget)
+  // }, [state]);
 
   return <Graph bigdata={[data, target]} />;
 }
