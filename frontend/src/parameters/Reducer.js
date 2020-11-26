@@ -1,3 +1,7 @@
+import { minus } from "../utilities/DateComparator";
+import { cycle, updateBox } from "./BoxReducer";
+import { workingPolicies } from "./util";
+
 export function reducer(state, action) {
   switch (action.type) {
     case "initsession": {
@@ -5,7 +9,7 @@ export function reducer(state, action) {
         ...state,
         uid: action.uid,
         pinned: true,
-        // country: "Switzerland",
+        country: action.default === undefined ? null : action.default,
         countries: action.countries,
       };
     }
@@ -23,6 +27,7 @@ export function reducer(state, action) {
         tframe: {
           from: action.from,
           until: state.tframe.until,
+          range: minus(action.from, state.tframe.until),
         },
       };
     }
@@ -33,6 +38,7 @@ export function reducer(state, action) {
         tframe: {
           from: state.tframe.from,
           until: action.until,
+          range: minus(state.tframe.from, action.until),
         },
       };
     }
@@ -64,6 +70,19 @@ export function reducer(state, action) {
       };
     }
 
+    case "setpolicies": {
+      // this function is called when a new policy set is received and we setLevel accordingly
+      return {
+        ...state,
+        policies: action.policies, // still need to crop the policies [from, until]
+        box: updateBox(
+          state,
+          action.policies,
+          workingPolicies(action.policies)
+        ),
+      };
+    }
+
     case "log": {
       console.log(state);
       return state;
@@ -72,12 +91,4 @@ export function reducer(state, action) {
     default:
       return state;
   }
-}
-
-function singleCycle(val) {
-  return (val + 1) % 4;
-}
-
-function cycle(level, i) {
-  return level.map((val, index) => (index === i ? singleCycle(val) : val));
 }

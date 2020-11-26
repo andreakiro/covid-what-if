@@ -1,5 +1,43 @@
 import { minus } from "../utilities/DateComparator";
 
+function cropArray(array, from, until) {
+  return array;
+}
+
+export function crop(policies, from, until) {
+  return {
+    c1_level: cropArray(policies.c1_level, from, until),
+    c2_level: cropArray(policies.c2_level, from, until),
+    c3_level: cropArray(policies.c3_level, from, until),
+    c4_level: cropArray(policies.c4_level, from, until),
+    c5_level: cropArray(policies.c5_level, from, until),
+    c6_level: cropArray(policies.c6_level, from, until),
+    c7_level: cropArray(policies.c7_level, from, until),
+    c8_level: cropArray(policies.c8_level, from, until),
+  };
+}
+
+export function workingPolicies(body) {
+  let beta = 0;
+  let usage = [];
+  let policies = Object.values(body);
+  for (let i = 0; i < policies.length - 1; i++) {
+    // -1 to remove useless h1 policy
+    let bool = false;
+    let pol = policies[i];
+    for (let j = 0; j < pol.length; j++) {
+      if (pol[j] !== 0) {
+        beta++;
+        bool = true;
+        break;
+      }
+    }
+    bool ? usage.push(1) : usage.push(0);
+  }
+
+  return [usage, beta];
+}
+
 export function policyFromList(policies) {
   return policies === null
     ? {

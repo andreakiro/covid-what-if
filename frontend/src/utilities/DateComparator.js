@@ -15,9 +15,17 @@ export function untilIsBeforeFrom(from, until) {
 }
 
 export function minus(from, until) {
-  if (from === null && until === null) {
-    return 32;
-  } else {
-    return 160;
-  }
+  if (from === null || until === null) return 0;
+  let d1 = new Date(
+    parseInt(from.substring(6, 10)),
+    parseInt(from.substring(3, 5)),
+    parseInt(from.substring(0, 2))
+  );
+  let d2 = new Date(
+    parseInt(until.substring(6, 10)),
+    parseInt(until.substring(3, 5)),
+    parseInt(until.substring(0, 2))
+  );
+
+  return (d2.getTime() - d1.getTime()) / (1000 * 3600 * 24);
 }
