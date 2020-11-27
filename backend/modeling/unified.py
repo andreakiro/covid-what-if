@@ -103,7 +103,7 @@ def load(country, tfrom=None, tuntil=None) :
     past_window = m.hparams["past_window"]
     
     # Get data and save normalization weights
-    print("getting normalization weights..." + " "*20, end='\r')
+    print("Getting normalization weights..." + " "*20, end='\r')
     data = get_model_data(train_cols, target_col, dropna=True, normalize=False, max_r=4)
     _, train_mean, train_std, norm_cols = normalize_but_country(data, train_cols, country)
     
@@ -156,13 +156,14 @@ def load(country, tfrom=None, tuntil=None) :
         return sub_pred
             
     # Make prediction
-    print("predicting..." + " "*20, end='\r')
+    print("Predicting..." + " "*20, end='\r')
     pred = predict(data, tfrom, tuntil)
     sub_data = sub_data + (pred, )
     
     
     def update(cur_country, tfrom, tuntil, new_policies=None, demographics=None) :
         """Returns a prediction for other policies or another time-frame"""
+        print('Now in update func : ', cur_country, tfrom, tuntil, new_policies)
         
         if cur_country != country :
             raise Exception('Call the load function when choosing a new country')
@@ -170,7 +171,7 @@ def load(country, tfrom=None, tuntil=None) :
         # Rewrite policies
         from_date = pd.to_datetime(tfrom)
         to_date = pd.to_datetime(tuntil)
-        mask = (dates >= from_date) & (dates <= to_date)
+        mask = dates_mask(tfrom, tuntil)
         d = dates[mask]
         
         if new_policies is not None :
