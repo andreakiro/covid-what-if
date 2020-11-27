@@ -43,10 +43,12 @@ def update():
     tfrom = body['tframe']['from']
     tuntil = body['tframe']['until']
     policies = body['policies']
-    pred, target, _ = update_func[uid](country_iso, tfrom, tuntil, policies)
+    print(country_iso, tfrom, tuntil)
+    pred, target, dates = update_func[uid](country_iso, tfrom, tuntil, policies)
     return {
         "pred": list(np.nan_to_num(pred)),
-        "target": list(np.nan_to_num(target))
+        "target": list(np.nan_to_num(target)),
+        "dates": [str(x) for x in dates],
     }
 
 @app.route('/', methods=['POST'])
