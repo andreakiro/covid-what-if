@@ -14,18 +14,21 @@ export function untilIsBeforeFrom(from, until) {
   return false;
 }
 
-export function minus(from, until) {
-  if (from === null || until === null) return 0;
-  let d1 = new Date(
-    parseInt(from.substring(6, 10)),
-    parseInt(from.substring(3, 5)),
-    parseInt(from.substring(0, 2))
+function date(strdate) {
+  return new Date(
+    strdate.substring(6, 10),
+    strdate.substring(3, 5),
+    strdate.substring(0, 2)
   );
-  let d2 = new Date(
-    parseInt(until.substring(6, 10)),
-    parseInt(until.substring(3, 5)),
-    parseInt(until.substring(0, 2))
-  );
+}
 
-  return (d2.getTime() - d1.getTime()) / (1000 * 3600 * 24);
+export function daysBetween(from, until) {
+  return minus(from, until);
+}
+
+export function minus(from, until) {
+  if (from === null || until === null) return null;
+  let d1 = date(from);
+  let d2 = date(until);
+  return (d2.getTime() - d1.getTime()) / (1000 * 3600 * 24) + 1;
 }

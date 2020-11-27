@@ -1,3 +1,5 @@
+import { policyFromList } from "./util";
+
 function singleCycle(val) {
   return (val + 1) % 4;
 }
@@ -30,6 +32,30 @@ function levelFromPolicies(policies, width, order) {
     }
   }
   return newLevel;
+}
+
+export function policiesFromLevel(range, width, order, level) {
+  // range = day between()
+  let policies = [];
+  let span = Math.floor(range / width);
+  for (let i = 0; i < 8; i++) {
+    let pol = [];
+    if (order[i] === 0) for (let j = 0; j < range; j++) pol.push(0);
+    else {
+      let index = 0;
+      let k = 0;
+      for (let j = 0; j < range; j++) {
+        index += 1;
+        pol.push(level[k]);
+        if (index === span) {
+          index = 0;
+          if (k < level.length - 1) k++; // not very good yet though......
+        }
+      }
+    }
+    policies.push(pol);
+  }
+  return policyFromList(policies);
 }
 
 function compute(array, initIndex, batch) {

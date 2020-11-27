@@ -1,7 +1,10 @@
 import * as d3 from "d3";
 import React, { useEffect, useState } from "react";
 import { load, update } from "../../API";
+import { policiesFromLevel } from "../../parameters/BoxReducer";
 import { useParameters } from "../../parameters/ParameterProvider";
+import { workingPolicies } from "../../parameters/util";
+import { daysBetween } from "../../utilities/DateComparator";
 import Graph from "./Graph";
 
 function zip(arrays) {
@@ -42,7 +45,15 @@ async function loadData(state, dispatch, setData, setTarget) {
   });
 }
 
-async function updateData(state, setData, setTarget) {
+async function updateData(state, dispatch, setData, setTarget) {
+  let days = daysBetween(state.tframe.from, state.tframe.until);
+  let range = days === null ? 245 : days; // still need to remove magic number
+  let policies = policiesFromLevel(
+    range,
+    state.box.width,
+    workingPolicies(state.policies),
+    state.box.level
+  ); // not sure for order
   let request = {
     uid: state.uid,
     country: state.country,
@@ -50,16 +61,22 @@ async function updateData(state, setData, setTarget) {
       from: state.tframe.from,
       until: state.tframe.until,
     },
-    policies: state.policies,
+    policies: policies,
   };
-  let data = await update(request);
-  setData(data);
+  let { pred, target, dates } = await update(request);
+  setData(formatData(pred, dates));
+  setTarget(formatData(target, dates));
+  dispatch({
+    type: "resettrigger",
+  });
 }
 
 export default function GraphManager() {
   let [state, dispatch] = useParameters();
+
   let [data, setData] = useState([]);
   let [target, setTarget] = useState([]);
+
   let [oldCountry, setOldCountry] = useState(state.country);
 
   useEffect(() => {
@@ -68,9 +85,9 @@ export default function GraphManager() {
     setOldCountry(state.country);
   }, [state, dispatch, oldCountry]);
 
-  // useEffect(() => {
-  //   updateData(state, setData, setTarget)
-  // }, [state]);
+  useEffect(() => {
+    if (state.trigger) updateData(state, dispatch, setData, setTarget);
+  }, [state, dispatch]);
 
   return <Graph bigdata={[data, target]} />;
 }

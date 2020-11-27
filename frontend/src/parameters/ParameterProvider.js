@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useReducer } from "react";
 import { reducer } from "./Reducer";
-import { initialize } from "./simulator/BoxParameters";
 import { policyFromList } from "./util";
 
 const Context = createContext(null);
@@ -19,13 +18,14 @@ export default function ParameterProvider(props) {
     tframe: {
       from: null,
       until: null,
-      range: 0,
+      range: null,
     },
     box: {
-      height: 2,
+      height: 0,
       width: 8,
-      level: initialize(2, 8),
+      level: null,
     },
+    trigger: false,
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);

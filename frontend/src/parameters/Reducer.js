@@ -22,24 +22,30 @@ export function reducer(state, action) {
     }
 
     case "setfrom": {
+      let newFrom = action.from;
+      let newRange = minus(newFrom, state.tframe.until);
       return {
         ...state,
         tframe: {
-          from: action.from,
+          from: newFrom,
           until: state.tframe.until,
-          range: minus(action.from, state.tframe.until),
+          range: newRange,
         },
+        trigger: newRange !== null ? true : false,
       };
     }
 
     case "setuntil": {
+      let newUntil = action.until;
+      let newRange = minus(state.tframe.from, newUntil);
       return {
         ...state,
         tframe: {
           from: state.tframe.from,
-          until: action.until,
-          range: minus(state.tframe.from, action.until),
+          until: newUntil,
+          range: newRange,
         },
+        trigger: newRange !== null ? true : false,
       };
     }
 
@@ -67,6 +73,7 @@ export function reducer(state, action) {
           width: state.box.width,
           level: newLevel,
         },
+        trigger: true,
       };
     }
 
@@ -80,6 +87,14 @@ export function reducer(state, action) {
           action.policies,
           workingPolicies(action.policies)
         ),
+      };
+    }
+
+    case "resettrigger": {
+      console.log("HEY!");
+      return {
+        ...state,
+        trigger: false,
       };
     }
 
