@@ -15,7 +15,6 @@ def getAvailableCountries():
     dir = root + '/modeling/models'
     for path, subdirs, files in os.walk(dir):
         for name in subdirs:
-            print(name)
             countries.append(getCountry(name))
     return countries
 
