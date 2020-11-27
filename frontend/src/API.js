@@ -23,6 +23,8 @@ export async function load(params, model = "hybrid") {
 }
 
 export async function update(params) {
+  if (params.tframe.from === null || params.tframe.until === null)
+    params.tframe = { from: null, until: null };
   return post(UPDATE_SOCKET, params);
 }
 
