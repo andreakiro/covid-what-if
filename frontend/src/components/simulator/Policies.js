@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParameters } from "../../parameters/ParameterProvider";
+import { workingPolicies } from "../../parameters/util";
 import Dropdown from "../modules/Dropdown";
 
 function Label({ text }) {
@@ -34,15 +36,40 @@ function InputDropdown({ text, items, lock, setLock }) {
   );
 }
 
+function fromOrder(state, order, setActives) {
+  let actives = [];
+  for (let i = 0; i < order.length; i++) {
+    if (order[i] === 1) {
+      let indexer = "c" + (i + 1);
+      actives.push(state.policynames[indexer]);
+    }
+  }
+  setActives(actives);
+}
+
 export default function Policies(props) {
   let [lock, setLock] = useState(null);
+  let [state, _] = useParameters();
+  let [actives, setActives] = useState([]);
+  useEffect(() => {
+    let order = workingPolicies(state.policies)[0];
+    fromOrder(state, order, setActives);
+  }, [state]);
 
   return (
     <div className="flex flex-col space-y-4 w-32">
       <div className="flex flex-col space-y-2 w-32">
         <Label text="Policies" />
-        <LabelBox text="Lockdown" />
-        <LabelBox text="Masks" />
+        {actives.map((text) => {
+          return (
+            <div className="flex space-x-2">
+              <LabelBox text={text} />
+              <button className="text-sm leading-5 font-medium text-gray-700 hover:text-red-500">
+                x
+              </button>
+            </div>
+          );
+        })}
         <InputDropdown
           text="Add policy"
           items={["Lockdown", "Masks"]}

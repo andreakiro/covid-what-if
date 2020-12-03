@@ -63,6 +63,7 @@ function InputDropdown({
 }) {
   return (
     <Dropdown
+      init={true}
       defaultcountry={defaultcountry}
       textselector={text}
       items={items}
