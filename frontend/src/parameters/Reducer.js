@@ -8,7 +8,6 @@ export function reducer(state, action) {
       return {
         ...state,
         uid: action.uid,
-        pinned: true,
         country: action.default === undefined ? null : action.default,
         countries: action.countries,
         policynames: action.policynames,
@@ -82,6 +81,7 @@ export function reducer(state, action) {
       // this function is called when a new policy set is received and we setLevel accordingly
       return {
         ...state,
+        pinned: true,
         policies: action.policies, // still need to crop the policies [from, until]
         box: updateBox(
           state,

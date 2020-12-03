@@ -163,7 +163,6 @@ def load(country, tfrom=None, tuntil=None) :
     
     def update(cur_country, tfrom, tuntil, new_policies=None, demographics=None) :
         """Returns a prediction for other policies or another time-frame"""
-        print('Now in update func : ', cur_country, tfrom, tuntil, new_policies)
         
         if cur_country != country :
             raise Exception('Call the load function when choosing a new country')

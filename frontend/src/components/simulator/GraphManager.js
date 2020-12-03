@@ -42,6 +42,7 @@ async function loadData(state, dispatch, setData, setTarget) {
   dispatch({
     type: "setpolicies",
     policies: policies,
+    pinned: true,
   });
 }
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { init } from "../API";
 import Box from "../components/simulator/Box";
 import GraphManager from "../components/simulator/GraphManager";
@@ -42,7 +42,7 @@ export default function Simulator() {
             <GraphManager />
           </div>
         </div>
-        <div className={`flex pt-8 ${state.country === null ? "hidden" : ""}`}>
+        <div className={`flex pt-8 ${state.pinned ? "" : "hidden"}`}>
           <div className="w-1/3 flex justify-center">
             <Policies />
           </div>

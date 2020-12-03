@@ -49,7 +49,7 @@ function fromOrder(state, order, setActives) {
 
 export default function Policies(props) {
   let [lock, setLock] = useState(null);
-  let [state, _] = useParameters();
+  let [state] = useParameters();
   let [actives, setActives] = useState([]);
   useEffect(() => {
     let order = workingPolicies(state.policies)[0];
