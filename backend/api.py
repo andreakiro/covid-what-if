@@ -3,6 +3,7 @@ from flask_cors import CORS
 import secrets
 from modeling.unified import *
 from utils.countries import *
+from utils.policies import *
 import json
 import numpy as np
 
@@ -15,6 +16,7 @@ update_func = dict()
 def init():
     return {
         "countries": getAvailableCountries(),
+        "policies": getPolicyMap(),
         "uid": secrets.token_urlsafe(8)
     }
 
@@ -43,7 +45,6 @@ def update():
     tfrom = body['tframe']['from']
     tuntil = body['tframe']['until']
     policies = body['policies']
-    print(country_iso, tfrom, tuntil)
     pred, target, dates = update_func[uid](country_iso, tfrom, tuntil, policies)
     return {
         "pred": list(np.nan_to_num(pred)),
