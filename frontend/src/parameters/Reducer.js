@@ -11,6 +11,7 @@ export function reducer(state, action) {
         pinned: true,
         country: action.default === undefined ? null : action.default,
         countries: action.countries,
+        policynames: action.policynames,
       };
     }
 

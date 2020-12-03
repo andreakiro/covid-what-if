@@ -14,6 +14,7 @@ export default function ParameterProvider(props) {
     pinned: false,
     country: null,
     countries: [],
+    policynames: {},
     policies: policyFromList(null),
     tframe: {
       from: null,

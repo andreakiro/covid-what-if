@@ -35,7 +35,7 @@ export function workingPolicies(body) {
     bool ? usage.push(1) : usage.push(0);
   }
 
-  return [usage, beta];
+  return [usage, beta]; // usage is order and beta is number of working policies
 }
 
 export function policyFromList(policies) {
