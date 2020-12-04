@@ -33,7 +33,7 @@ export default function Simulator() {
       >
         Log
       </button> */}
-      <div className="flex flex-col w-10/12 mt-8 mb-8 divide-y divide-gray-400">
+      <div className="flex flex-col w-10/12 mt-8 mb-8 ">
         <div className="flex pb-4">
           <div className="w-1/3 flex justify-center">
             <Inputs countries={state.countries} />

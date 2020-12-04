@@ -52,7 +52,7 @@ export default function Graph({ bigdata }) {
       .append("path")
       .datum(data)
       .attr("fill", "none")
-      .attr("stroke", "green")
+      .attr("stroke", "steelblue")
       .attr("stroke-width", 1.5)
       .attr("d", line);
 
@@ -66,8 +66,8 @@ export default function Graph({ bigdata }) {
       .append("path")
       .datum(target)
       .attr("fill", "none")
-      .attr("stroke", "blue")
-      .attr("stroke-width", 1.5)
+      .attr("stroke", "black")
+      .attr("stroke-width", 0.8)
       .attr("d", line2);
 
     svg

@@ -18,19 +18,13 @@ function BoxButton({ text, level, cycle }) {
       onClick={() => cycle()}
       className={`inline-flex justify-center ${
         level === 0
-          ? "bg-white"
+          ? "bg-indigo-100 text-indigo-100 hover:text-gray-500"
           : level === 1
-          ? "bg-yellow-500"
+          ? "bg-indigo-300 text-indigo-300 hover:text-white"
           : level === 2
-          ? "bg-orange-500"
-          : "bg-red-600"
-      } px-4 py-2 text-sm leading-5 font-medium ${
-        level === 0 ? "text-gray-700" : "text-white"
-      } ${
-        level === 0 ? "text-grey-700" : "text-white"
-      } w-full rounded-md border ${
-        level === 0 ? "border-gray-500" : ""
-      } px-4 py-2 text-sm leading-5 font-medium hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150`}
+          ? "bg-indigo-500 text-indigo-500 hover:text-white"
+          : "bg-indigo-700 text-indigo-700 hover:text-white"
+      } px-4 py-2 text-sm leading-5 font-medium w-full rounded-md border px-4 py-2 text-sm leading-5 font-medium focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150`}
     >
       {text}
     </button>
@@ -48,8 +42,8 @@ export default function Box() {
 
   return (
     <div className="flex flex-col items-center space-y-2 w-full">
-      <div className="text-left w-4/5">
-        <Label text="Each box represent 1/8 of the time frame" />
+      <div className="text-right w-4/5">
+        <Label text="Click on a box to increase policy level" />
       </div>
       <div className="w-4/5 rounded-md border border-gray-600 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150">
         <div className="flex flex-col space-y-2 w-full">
@@ -61,7 +55,7 @@ export default function Box() {
                   return (
                     <React.Fragment key={i}>
                       <BoxButton
-                        text={x}
+                        text={level[i]}
                         level={level[i]}
                         cycle={() =>
                           dispatch({
@@ -78,9 +72,7 @@ export default function Box() {
           })}
         </div>
       </div>
-      <div className="text-right w-4/5">
-        <Label text="Click on a box to increase policy level" />
-      </div>
+      
       {/* <button
         onClick={() => reset()}
         className="inline-flex justify-center bg-white px-4 py-2 text-sm leading-5 font-medium text-gray-700 w-1/5 rounded-md border border-gray-500 px-4 py-2 text-sm leading-5 font-medium hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150"
