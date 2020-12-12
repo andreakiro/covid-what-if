@@ -1,5 +1,5 @@
 import { daysBetween, minus } from "../utilities/DateComparator";
-import { cycle, policiesFromLevel, updateBox } from "./BoxReducer";
+import { cycle, updateBox, updatePolicies } from "./BoxReducer";
 import { workingPolicies } from "./util";
 
 export function reducer(state, action) {
@@ -70,11 +70,13 @@ export function reducer(state, action) {
       let days = daysBetween(state.tframe.from, state.tframe.until);
       let range = days === null ? 245 : days;
 
-      let newPolicies = policiesFromLevel(
+      let newPolicies = updatePolicies(
+        state.policies,
         range,
         state.box.width,
         workingPolicies(state.policies)[0],
-        newLevel
+        newLevel,
+        action.i
       );
 
       return {
