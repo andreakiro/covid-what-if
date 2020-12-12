@@ -5,6 +5,7 @@ import { timeout } from "../../Utility.js";
 import DatePicker from "../modules/DatePicker";
 import Dropdown from "../modules/Dropdown";
 import Modal from "../modules/Modal";
+import Selector from "../modules/Selector";
 
 function Label({ text }) {
   return (
@@ -73,6 +74,21 @@ function InputDropdown({
       onClose={(c) => {
         setLock(null);
         setGlobalInput(c);
+      }}
+    />
+  );
+}
+
+function InputSelector({ text, items, lock, setLock }) {
+  return (
+    <Selector
+      textselector={text}
+      items={items}
+      sortItems={true}
+      open={lock === text}
+      onOpen={() => setLock(text)}
+      onClose={() => {
+        setLock(null);
       }}
     />
   );
@@ -166,12 +182,16 @@ export default function Inputs() {
         animation={false}
         modal={true}
       />
-      <InputButton
-        text="Download"
-        setLock={setLock}
-        animation={true}
-        modal={false}
-      />
+
+      <div className="flex flex-col space-y-2 w-32">
+        <Label text="Policies" />
+        <InputSelector
+          text="Add one"
+          lock={lock}
+          setLock={setLock}
+          items={Object.values(state.policynames)}
+        />
+      </div>
     </div>
   );
 }

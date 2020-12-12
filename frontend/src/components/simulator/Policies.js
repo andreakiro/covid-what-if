@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParameters } from "../../parameters/ParameterProvider";
-import { workingPolicies } from "../../parameters/util";
 import Dropdown from "../modules/Dropdown";
 
 function Label({ text }) {
@@ -22,62 +21,76 @@ function LabelBox({ text }) {
   );
 }
 
-function InputDropdown({ text, items, lock, setLock }) {
-  return (
-    <Dropdown
-      textselector={text}
-      items={items}
-      open={lock === text}
-      onOpen={() => setLock(text)}
-      onClose={(c) => {
-        setLock(null);
-      }}
-    />
-  );
-}
-
 export default function Policies() {
-  let [lock, setLock] = useState(null);
-  let [state] = useParameters();
+  let [state, dispatch] = useParameters();
 
   let [actives, setActives] = useState([]);
-  let [unactives, setUnactives] = useState([]);
+  let [map, setMap] = useState({});
 
   useEffect(() => {
-    let order = workingPolicies(state.policies)[0];
     let actives = [];
     let unactives = [];
-    for (let i = 0; i < order.length; i++) {
+    let map = {};
+    let iMap = 0;
+    for (let i = 0; i < state.order.length; i++) {
       let indexer = "c" + (i + 1);
-      if (order[i] === 1) actives.push(state.policynames[indexer]);
-      else unactives.push(state.policynames[indexer]);
+      if (state.order[i] === 1) {
+        actives.push(state.policynames[indexer]);
+        map[iMap++] = i;
+      } else unactives.push(state.policynames[indexer]);
     }
     setActives(actives);
-    setUnactives(unactives);
-  }, [state]);
+    dispatch({
+      type: "unactives",
+      content: unactives,
+    });
+    setMap(map);
+  }, [state.order]);
 
   return (
-    <div className="flex flex-col space-y-4 w-32">
-      <div className="flex flex-col space-y-2 w-32">
-        <Label text="Policies" />
-        {actives.map((text, i) => {
-          return (
-            <div key={i} className="flex space-x-2">
-              <LabelBox text={text} />
-              <button className="text-sm leading-5 font-medium text-gray-700 hover:text-red-500">
-                x
-              </button>
-            </div>
-          );
-        })}
-        <InputDropdown
-          text="Add policy"
-          items={unactives}
-          sortItems={true}
-          lock={lock}
-          setLock={setLock}
-        />
-      </div>
+    <div className="flex flex-col space-y-2 w-full">
+      {actives.map((text, i) => {
+        return (
+          <div key={i} className="flex space-x-2">
+            <LabelBox text={text} />
+            <button
+              onClick={() =>
+                dispatch({
+                  type: "del",
+                  index: Object.values(map)[i],
+                  relative: i,
+                  status: 0,
+                })
+              }
+              className="text-sm leading-5 font-medium text-gray-700 hover:text-red-500"
+            >
+              DEL
+            </button>
+            <button
+              onClick={() =>
+                dispatch({
+                  type: "inc",
+                  row: i,
+                })
+              }
+              className="text-sm leading-5 font-medium text-gray-700 hover:text-red-500"
+            >
+              +1
+            </button>
+            <button
+              onClick={() =>
+                dispatch({
+                  type: "reset",
+                  row: i,
+                })
+              }
+              className="text-sm leading-5 font-medium text-gray-700 hover:text-red-500"
+            >
+              RES
+            </button>
+          </div>
+        );
+      })}
     </div>
   );
 }
