@@ -36,7 +36,7 @@ function InputDropdown({ text, items, lock, setLock }) {
   );
 }
 
-export default function Policies(props) {
+export default function Policies() {
   let [lock, setLock] = useState(null);
   let [state] = useParameters();
 
