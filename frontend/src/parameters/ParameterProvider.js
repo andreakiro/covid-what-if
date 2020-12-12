@@ -26,7 +26,7 @@ export default function ParameterProvider(props) {
       width: 8,
       level: null,
     },
-    trigger: false,
+    trigger: 0, // 0 = nothing 1 = policies 2 = TF
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);

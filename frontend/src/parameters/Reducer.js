@@ -1,5 +1,5 @@
-import { minus } from "../utilities/DateComparator";
-import { cycle, updateBox } from "./BoxReducer";
+import { daysBetween, minus } from "../utilities/DateComparator";
+import { cycle, policiesFromLevel, updateBox } from "./BoxReducer";
 import { workingPolicies } from "./util";
 
 export function reducer(state, action) {
@@ -31,7 +31,7 @@ export function reducer(state, action) {
           until: state.tframe.until,
           range: newRange,
         },
-        trigger: newRange !== null ? true : false,
+        trigger: newRange !== null ? 2 : 0,
       };
     }
 
@@ -45,7 +45,7 @@ export function reducer(state, action) {
           until: newUntil,
           range: newRange,
         },
-        trigger: newRange !== null ? true : false,
+        trigger: newRange !== null ? 2 : 0,
       };
     }
 
@@ -66,6 +66,17 @@ export function reducer(state, action) {
 
     case "cycle": {
       let newLevel = cycle(state.box.level, action.i);
+
+      let days = daysBetween(state.tframe.from, state.tframe.until);
+      let range = days === null ? 245 : days;
+
+      let newPolicies = policiesFromLevel(
+        range,
+        state.box.width,
+        workingPolicies(state.policies)[0],
+        newLevel
+      );
+
       return {
         ...state,
         box: {
@@ -73,7 +84,8 @@ export function reducer(state, action) {
           width: state.box.width,
           level: newLevel,
         },
-        trigger: true,
+        policies: newPolicies,
+        trigger: 1,
       };
     }
 
@@ -91,16 +103,19 @@ export function reducer(state, action) {
       };
     }
 
+    case "crop": {
+      return state;
+    }
+
     case "resettrigger": {
-      console.log("HEY!");
       return {
         ...state,
-        trigger: false,
+        trigger: 0,
       };
     }
 
     case "log": {
-      console.log(state);
+      console.log(JSON.stringify(state.policies));
       return state;
     }
 

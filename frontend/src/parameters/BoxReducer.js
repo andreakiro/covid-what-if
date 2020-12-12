@@ -35,7 +35,32 @@ function levelFromPolicies(policies, width, order) {
 }
 
 export function policiesFromLevel(range, width, order, level) {
-  // range = day between()
+  let policies = [];
+  let span = Math.floor(range / width);
+  let buff = 0;
+  for (let i = 0; i < order.length; i++) {
+    let pol = [];
+    if (order[i] === 0) {
+      for (let j = 0; j < range; j++) pol.push(0);
+      buff++;
+    } else {
+      let curLevel = level.slice(
+        i * order.length - buff * order.length,
+        (i + 1) * order.length - buff * order.length
+      );
+      let levelIndex = 0;
+      for (let j = 0; j < range; j++) {
+        if (j !== 0 && j % span === 0 && levelIndex < order.length - 1)
+          levelIndex++;
+        pol.push(curLevel[levelIndex]);
+      }
+    }
+    policies.push(pol);
+  }
+  return policyFromList(policies);
+}
+
+export function policiesFromLevel2(range, width, order, level, oldPolicies) {
   let policies = [];
   let span = Math.floor(range / width);
   for (let i = 0; i < 8; i++) {
@@ -55,6 +80,7 @@ export function policiesFromLevel(range, width, order, level) {
     }
     policies.push(pol);
   }
+
   return policyFromList(policies);
 }
 

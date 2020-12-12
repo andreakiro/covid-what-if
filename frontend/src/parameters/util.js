@@ -20,9 +20,8 @@ export function crop(policies, from, until) {
 export function workingPolicies(body) {
   let beta = 0;
   let usage = [];
-  let policies = Object.values(body);
-  for (let i = 0; i < policies.length - 1; i++) {
-    // -1 to remove useless h1 policy
+  let policies = Object.values(body)
+  for (let i = 0; i < policies.length; i++) {
     let bool = false;
     let pol = policies[i];
     for (let j = 0; j < pol.length; j++) {
