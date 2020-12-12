@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParameters } from "../../parameters/ParameterProvider";
 
 function Label({ text }) {
@@ -33,6 +33,8 @@ function BoxButton({ text, level, cycle }) {
 
 export default function Box() {
   let [state, dispatch] = useParameters();
+  let [hide, setHide] = useState(false);
+
   let {
     box: { height, width, level },
   } = state;
@@ -40,8 +42,23 @@ export default function Box() {
   let column = Array.from({ length: width }, (_, i) => i + 1);
   let row = Array.from({ length: height }, (_, i) => i + 1);
 
+  useEffect(() => {
+    let hide = true;
+    for (let i = 0; i < state.order.length; i++) {
+      if (state.order[i] != 0) {
+        hide = false;
+        break;
+      }
+    }
+    setHide(hide);
+  }, [state.order]);
+
   return (
-    <div className="flex flex-col items-center space-y-2 w-full">
+    <div
+      className={`flex flex-col items-center space-y-2 w-full ${
+        hide ? "hidden" : ""
+      }`}
+    >
       <div className="text-right w-4/5">
         <Label text="Click on a box to increase policy level" />
       </div>
@@ -72,7 +89,7 @@ export default function Box() {
           })}
         </div>
       </div>
-      
+
       {/* <button
         onClick={() => reset()}
         className="inline-flex justify-center bg-white px-4 py-2 text-sm leading-5 font-medium text-gray-700 w-1/5 rounded-md border border-gray-500 px-4 py-2 text-sm leading-5 font-medium hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150"

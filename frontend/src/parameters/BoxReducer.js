@@ -8,6 +8,14 @@ export function cycle(level, i) {
   return level.map((val, index) => (index === i ? singleCycle(val) : val));
 }
 
+export function reset(level, width, row) {
+  return level.map((val, index) => Math.floor(index / width) === row ? 0 : val);
+};
+
+export function increase(level, width, row) {
+  return level.map((val, index) => Math.floor(index / width) === row ? val + 1 : val);
+}
+
 export function updateBox(state, policies, workingpol) {
   let order = workingpol[0];
   let newHeight = workingpol[1];
@@ -35,22 +43,18 @@ function levelFromPolicies(policies, width, order) {
 }
 
 export function updatePolicies(oldp, range, width, order, level, index) {
-  // console.log(index);
   let oldpolicies = Object.values(oldp);
   let policies = [];
   let span = Math.floor(range / width);
   let buff = 0;
   let array = Math.floor(index / width);
   let area = index % width;
-  // console.log("array", array, "area", area);
   for (let i = 0; i < order.length; i++) {
     let pol = [];
     if (order[i] === 0) {
-      console.log("0", i);
       for (let j = 0; j < range; j++) pol.push(oldpolicies[i][j]);
       buff++;
     } else {
-      console.log("1", i);
       let curLevel = level.slice(
         i * order.length - buff * order.length,
         (i + 1) * order.length - buff * order.length
@@ -62,10 +66,39 @@ export function updatePolicies(oldp, range, width, order, level, index) {
         let inarray = array === i - buff;
         let inarea = area === levelIndex;
         if (inarray && inarea) {
-          // console.log("NEW");
           pol.push(curLevel[levelIndex]);
         } else {
-          // console.log("OLD");
+          pol.push(oldpolicies[i][j]);
+        }
+      }
+    }
+    policies.push(pol);
+  }
+  return policyFromList(policies);
+}
+
+export function updatePolicies2(oldp, range, width, order, level, row) {
+  let oldpolicies = Object.values(oldp);
+  let policies = [];
+  let span = Math.floor(range / width);
+  let buff = 0;
+  for (let i = 0; i < order.length; i++) {
+    let pol = [];
+    if (order[i] === 0) {
+      for (let j = 0; j < range; j++) pol.push(oldpolicies[i][j]);
+      buff++;
+    } else {
+      let curLevel = level.slice(
+        i * order.length - buff * order.length,
+        (i + 1) * order.length - buff * order.length
+      );
+      let levelIndex = 0;
+      for (let j = 0; j < range; j++) {
+        if (j !== 0 && j % span === 0 && levelIndex < order.length - 1)
+          levelIndex++;
+        if (row === i - buff) {
+          pol.push(curLevel[levelIndex]);
+        } else {
           pol.push(oldpolicies[i][j]);
         }
       }
