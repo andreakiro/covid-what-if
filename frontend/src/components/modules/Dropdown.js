@@ -8,7 +8,7 @@ export default function Dropdown({
   onOpen,
   onClose,
   defaultcountry = null,
-  init = false
+  init = false,
 }) {
   let [selected, setSelected] = useState(defaultcountry);
   let onItemClicked = (name) => {
@@ -21,7 +21,9 @@ export default function Dropdown({
         <span className="rounded-md shadow-sm">
           <button
             type="button"
-            className={`inline-flex justify-center w-full rounded-md border border-${ init && selected === null ? "green" : "gray"}-300 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150`}
+            className={`inline-flex justify-center w-full rounded-md border border-${
+              init && selected === null ? "green" : "gray"
+            }-300 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150`}
             onClick={() => {
               if (open) {
                 onClose(selected);
@@ -55,7 +57,11 @@ export default function Dropdown({
           open ? "" : "hidden"
         }`}
       >
-        <div className="rounded-md bg-white shadow-xs">
+        <div
+          className={`rounded-md bg-white shadow-xs overflow-y-auto ${
+            items.length > 2 ? "h-24" : ""
+          }`}
+        >
           <div className={`${selected === null ? "hidden" : ""}`}>
             <div className="py-1">
               <p className="block px-4 py-2 w-full text-left text-sm leading-5 text-gray-700">
