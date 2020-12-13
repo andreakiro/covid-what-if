@@ -15,7 +15,7 @@ function Label({ text }) {
 
 function LabelBox({ text }) {
   return (
-    <div className="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700">
+    <div className="inline-flex justify-center w-full rounded-md border border-gray-500 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700">
       <Label text={text} />
     </div>
   );
@@ -48,7 +48,7 @@ export default function Policies() {
   }, [state.order]);
 
   return (
-    <div className="flex flex-col space-y-2 w-full">
+    <div className="flex flex-col space-y-2 py-2 w-full">
       {actives.map((text, i) => {
         return (
           <div key={i} className="flex space-x-2">

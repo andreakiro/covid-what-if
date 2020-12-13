@@ -42,7 +42,7 @@ export default function Simulator() {
             <GraphManager />
           </div>
         </div>
-        <div className={`flex pt-8 ${state.pinned ? "" : "hidden"}`}>
+        <div className={`flex items-end pt-8 ${state.pinned ? "" : "hidden"}`}>
           <div className="w-1/3 flex justify-center">
             <Policies />
           </div>

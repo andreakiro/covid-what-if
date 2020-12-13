@@ -4,19 +4,16 @@ import { Link } from "react-router-dom";
 export default function Home() {
   return (
     <div className="flex flex-col w-10/12 mt-8 mb-8">
-      <div className="flex pb-4">
+      <div className="flex items-start pb-4">
         <div className="w-1/2 flex flex-col justify-center space-y-6">
           <div className="block text-2xl leading-5 space-y-2">
-            <label id="listbox-label" className="font-bold text-gray-700">
+            <h2 id="listbox-label" className="font-bold text-gray-700">
               What if ?
-            </label>
-            <label
-              id="listbox-label"
-              className="flex font-medium text-gray-700"
-            >
-              Global<p className="font-bold text-red-500">COVID-19</p>policy
-              simulator
-            </label>
+            </h2>
+            <p id="listbox-label" className="font-medium text-gray-700">
+              Global <span className="font-bold text-red-500">COVID-19</span>{" "}
+              policy simulator
+            </p>
           </div>
           <p className="block text-xl leading-5 text-gray-700 font-light">
             Web interface for public and policymakers to explore the health and
@@ -50,6 +47,11 @@ export default function Home() {
             </span>
           </div>
         </div>
+        <img
+          className="rounded-md shadow w-1/2 mt-32"
+          src="ressources/corona-virus-ab.jpg"
+          alt="IMAGE"
+        />
       </div>
     </div>
   );
