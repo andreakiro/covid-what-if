@@ -4,15 +4,15 @@ import Layout from "./components/layout/Layout";
 import Contribute from "./pages/Contribute";
 import Home from "./pages/Home";
 import Team from "./pages/Team";
-import SimulatorContainer from "./pages/SimulatorContainer"
+import SimulatorContainer from "./pages/SimulatorContainer";
 
 export default function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/home">
-          <Layout currentPage="home">
-            <Home />
+        <Route path="/simulator">
+          <Layout currentPage="simulator">
+            <SimulatorContainer />
           </Layout>
         </Route>
         <Route path="/team">
@@ -26,8 +26,8 @@ export default function App() {
           </Layout>
         </Route>
         <Route path="/">
-          <Layout currentPage="simulator">
-            <SimulatorContainer />
+          <Layout currentPage="home">
+            <Home />
           </Layout>
         </Route>
       </Switch>

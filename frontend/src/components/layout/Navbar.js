@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 function NavLink({ style, to, children }) {
@@ -34,21 +34,21 @@ export default function Nav({ currentPage }) {
               </div>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
-                  <NavLink to="/home" style={currentPage === "home"}>
+                  <NavLink to="/" style={currentPage === "home"}>
                     Home
                   </NavLink>
-                  <NavLink to="/" style={currentPage === "simulator"}>
+                  <NavLink to="/simulator" style={currentPage === "simulator"}>
                     Simulator
                   </NavLink>
                   <NavLink to="/team" style={currentPage === "team"}>
                     Team
                   </NavLink>
-                  <NavLink
+                  {/* <NavLink
                     to="/contribute"
                     style={currentPage === "contribute"}
                   >
                     Contribute
-                  </NavLink>
+                  </NavLink> */}
                 </div>
               </div>
             </div>
