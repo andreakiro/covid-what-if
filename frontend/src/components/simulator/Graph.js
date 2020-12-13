@@ -81,5 +81,5 @@ export default function Graph({ bigdata }) {
       .style("stroke-dasharray", "5,5");
   }, [ref, bigdata, margin]);
 
-  return <svg ref={ref} className="w-full h-auto"></svg>;
+  return <svg ref={ref} className="w-full h-full"></svg>;
 }

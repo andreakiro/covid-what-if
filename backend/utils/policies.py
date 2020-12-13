@@ -2,14 +2,14 @@ def getPolicyMap():
     return policies
 
 policies = {
-    'c1': 'Schools',
-    'c2': 'Workplaces',
-    'c3': 'Events',
-    'c4': 'Size rest',
-    'c5': 'Close trans',
-    'c6': 'Home',
-    'c7': 'Move rest',
-    'c8': 'Travel rest',
+    'c1': 'School closing',
+    'c2': 'Workplace closing',
+    'c3': 'Cancel public events',
+    'c4': 'Gathering size restrictions',
+    'c5': 'Close public transport',
+    'c6': 'Home confinement orders',
+    'c7': 'Internal movement restrictions',
+    'c8': 'International travel restrictions',
 }
 
 policies_full = {

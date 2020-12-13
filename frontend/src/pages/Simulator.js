@@ -23,32 +23,18 @@ export default function Simulator() {
   }, [dispatch]);
   return (
     <>
-      {/* <button
-        onClick={() =>
-          dispatch({
-            type: "log"
-          })
-        }
-        className="inline-flex justify-center w-20 rounded-md border border-gray-300 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150"
-      >
-        Log
-      </button> */}
-      <div className="flex flex-col w-10/12 mt-8 mb-8 ">
-        <div className="flex pb-4">
-          <div className="w-1/3 flex justify-center">
-            <Inputs countries={state.countries} />
-          </div>
-          <div className="w-2/3 flex justify-center">
-            <GraphManager />
-          </div>
+      <div className="grid grid-cols-3 w-10/12 mt-8 mb-8 ">
+        <div className="flex justify-center col-span-1 row-start-1">
+          <Inputs countries={state.countries} />
         </div>
-        <div className={`flex items-end pt-8 ${state.pinned ? "" : "hidden"}`}>
-          <div className="w-1/3 flex justify-center">
-            <Policies />
-          </div>
-          <div className="w-2/3 flex justify-center">
-            <Box />
-          </div>
+        <div className="col-span-2 row-start-1">
+          <GraphManager />
+        </div>
+        <div className="col-span-1 flex items-end">
+          <Policies />
+        </div>
+        <div className="col-span-2">
+          <Box />
         </div>
       </div>
     </>

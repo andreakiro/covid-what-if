@@ -55,14 +55,14 @@ export default function Box() {
 
   return (
     <div
-      className={`flex flex-col items-center space-y-2 w-full ${
+      className={`flex flex-col items-center mr-8 ml-16 space-y-2 ${
         hide ? "hidden" : ""
       }`}
     >
-      <div className="text-right w-4/5">
+      {/* <div className="text-right w-4/5">
         <Label text="Click on a box to increase policy level" />
-      </div>
-      <div className="w-4/5 rounded-md border border-gray-600 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150">
+      </div> */}
+      <div className="w-full rounded-md mt-4 border border-gray-600 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150">
         <div className="flex flex-col space-y-2 w-full">
           {row.map((y) => {
             return (
