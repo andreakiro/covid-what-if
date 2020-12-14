@@ -14,8 +14,8 @@ def getAvailableCountries():
     root = os.getcwd()
     dir = root + '/modeling/models'
     for path, subdirs, files in os.walk(dir):
-        for name in subdirs:
-            countries.append(getCountry(name))
+        for iso in subdirs:
+            countries.append(getCountry(iso))
     return countries
 
 iso_map_country = {
@@ -75,10 +75,10 @@ iso_map_country = {
     'HU': 'Hungary',
     'ID': 'Indonesia',
     'IE': 'Ireland',
-    'IL': 'Israel',
+    'ISR': 'Israel',
     'IN': 'India',
     'IQ': 'Iraq',
-    'IT': 'Italy',
+    'ITA': 'Italy',
     'JM': 'Jamaica',
     'JO': 'Jordan',
     'JP': 'Japan',
@@ -131,7 +131,7 @@ iso_map_country = {
     'RU': 'Russia',
     'RW': 'Rwanda',
     'SA': 'Saudi Arabia',
-    'SE': 'Sweden',
+    'SWE': 'Sweden',
     'SG': 'Singapore',
     'SI': 'Slovenia',
     'SK': 'Slovakia',
@@ -145,7 +145,7 @@ iso_map_country = {
     'TW': 'Taiwan',
     'TZ': 'Tanzania',
     'UG': 'Uganda',
-    'US': 'United States',
+    'USA': 'United States',
     'UY': 'Uruguay',
     'VE': 'Venezuela',
     'VN': 'Vietnam',
