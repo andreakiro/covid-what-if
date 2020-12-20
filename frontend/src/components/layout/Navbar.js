@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 function NavLink({ style, to, children }) {
@@ -43,12 +43,6 @@ export default function Nav({ currentPage }) {
                   <NavLink to="/team" style={currentPage === "team"}>
                     Team
                   </NavLink>
-                  {/* <NavLink
-                    to="/contribute"
-                    style={currentPage === "contribute"}
-                  >
-                    Contribute
-                  </NavLink> */}
                 </div>
               </div>
             </div>

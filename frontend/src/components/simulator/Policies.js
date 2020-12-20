@@ -1,21 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParameters } from "../../parameters/ParameterProvider";
 
-function Label({ text }) {
-  return (
-    <label
-      id="listbox-label"
-      className="block text-sm leading-5 font-medium text-gray-700"
-    >
-      {text}
-    </label>
-  );
-}
-
 function LabelBox({ text }) {
   return (
     <div className="inline-flex justify-center w-4/6 rounded-md border border-gray-500 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700">
-      <Label text={text} />
+      <label
+        id="listbox-label"
+        className="block text-sm leading-5 font-medium text-gray-700"
+      >
+        {text}
+      </label>
     </div>
   );
 }
@@ -54,7 +48,7 @@ export default function Policies() {
             <button
               onClick={() =>
                 dispatch({
-                  type: "del",
+                  type: "policy-transform-del",
                   index: Object.values(map)[i],
                   relative: i,
                   status: 0,
@@ -76,7 +70,8 @@ export default function Policies() {
             <button
               onClick={() =>
                 dispatch({
-                  type: "inc",
+                  type: "box-transform",
+                  card: "increase",
                   row: i,
                 })
               }
@@ -96,7 +91,8 @@ export default function Policies() {
             <button
               onClick={() =>
                 dispatch({
-                  type: "reset",
+                  type: "box-transform",
+                  card: "reset",
                   row: i,
                 })
               }

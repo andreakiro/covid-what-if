@@ -1,5 +1,9 @@
 import { policyFromList } from "./util";
 
+function singleNegCycle(val) {
+  return (val - 1) % 4;
+}
+
 function singleCycle(val) {
   return (val + 1) % 4;
 }
@@ -9,11 +13,21 @@ export function cycle(level, i) {
 }
 
 export function reset(level, width, row) {
-  return level.map((val, index) => Math.floor(index / width) === row ? 0 : val);
-};
+  return level.map((val, index) =>
+    Math.floor(index / width) === row ? 0 : val
+  );
+}
 
 export function increase(level, width, row) {
-  return level.map((val, index) => Math.floor(index / width) === row ? val + 1 : val);
+  return level.map((val, index) =>
+    Math.floor(index / width) === row ? singleCycle(val) : val
+  );
+}
+
+export function decrease(level, width, row) {
+  return level.map((val, index) =>
+    Math.floor(index / width) === row ? singleNegCycle(val) : val
+  );
 }
 
 export function updateBox(state, policies, workingpol) {

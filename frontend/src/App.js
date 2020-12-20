@@ -1,10 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Layout from "./components/layout/Layout";
-import Contribute from "./pages/Contribute";
 import Home from "./pages/Home";
-import Team from "./pages/Team";
 import SimulatorContainer from "./pages/SimulatorContainer";
+import Team from "./pages/Team";
 
 export default function App() {
   return (
@@ -18,11 +17,6 @@ export default function App() {
         <Route path="/team">
           <Layout currentPage="team">
             <Team />
-          </Layout>
-        </Route>
-        <Route path="/contribute">
-          <Layout currentPage="contribute">
-            <Contribute />
           </Layout>
         </Route>
         <Route path="/">

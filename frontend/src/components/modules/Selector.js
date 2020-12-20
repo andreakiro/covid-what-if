@@ -1,4 +1,3 @@
-import { dispatch } from "d3";
 import React from "react";
 import { useParameters } from "../../parameters/ParameterProvider";
 
@@ -24,7 +23,9 @@ export default function Selector({
             }}
             id="options-menu"
           >
-            {state.unactives.length === 0 && state.country !== null ? "All in!" : textselector}
+            {state.unactives.length === 0 && state.country !== null
+              ? "All in!"
+              : textselector}
             <svg
               className={`-mr-1 ml-2 h-5 w-5 transform ${
                 open ? "-rotate-180" : ""
@@ -67,7 +68,7 @@ export default function Selector({
                     key={item}
                     onClick={() => {
                       dispatch({
-                        type: "add",
+                        type: "policy-transform-add",
                         relative: 4,
                       });
                       onClose();

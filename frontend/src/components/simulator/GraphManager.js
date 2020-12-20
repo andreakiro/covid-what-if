@@ -38,7 +38,7 @@ async function loadData(state, dispatch, setData, setTarget) {
   setTarget(formatData(target, dates));
   delete policies["h6_level"];
   dispatch({
-    type: "setpolicies",
+    type: "setup",
     policies: policies,
     pinned: true,
   });

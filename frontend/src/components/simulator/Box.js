@@ -1,17 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParameters } from "../../parameters/ParameterProvider";
 
-function Label({ text }) {
-  return (
-    <label
-      id="listbox-label"
-      className="block text-sm leading-5 font-medium text-gray-700"
-    >
-      {text}
-    </label>
-  );
-}
-
 function BoxButton({ text, level, cycle }) {
   return (
     <button
@@ -59,9 +48,6 @@ export default function Box() {
         hide ? "hidden" : ""
       }`}
     >
-      {/* <div className="text-right w-4/5">
-        <Label text="Click on a box to increase policy level" />
-      </div> */}
       <div className="w-full rounded-md mt-4 border border-gray-600 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150">
         <div className="flex flex-col space-y-2 w-full">
           {row.map((y) => {
@@ -76,7 +62,8 @@ export default function Box() {
                         level={level[i]}
                         cycle={() =>
                           dispatch({
-                            type: "cycle",
+                            type: "box-transform",
+                            card: "cycle",
                             i: i,
                           })
                         }
@@ -89,19 +76,6 @@ export default function Box() {
           })}
         </div>
       </div>
-
-      {/* <button
-        onClick={() => reset()}
-        className="inline-flex justify-center bg-white px-4 py-2 text-sm leading-5 font-medium text-gray-700 w-1/5 rounded-md border border-gray-500 px-4 py-2 text-sm leading-5 font-medium hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150"
-      >
-        Reset
-      </button> */}
-      {/* <button
-        onClick={() => increase(1)}
-        className="inline-flex justify-center bg-white px-4 py-2 text-sm leading-5 font-medium text-gray-700 w-1/5 rounded-md border border-gray-500 px-4 py-2 text-sm leading-5 font-medium hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150"
-      >
-        +
-      </button> */}
     </div>
   );
 }

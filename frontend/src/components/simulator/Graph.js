@@ -1,8 +1,14 @@
 import * as d3 from "d3";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Graph({ bigdata }) {
   const ref = React.useRef(null);
+
+  let [on, setOn] = useState(false);
+  useEffect(() => {
+    if (bigdata[1].length === 0) setOn(false);
+    else setOn(true);
+  }, [bigdata]);
 
   const margin = {
     top: 10,
@@ -25,6 +31,36 @@ export default function Graph({ bigdata }) {
 
     const data = bigdata[0];
     const target = bigdata[1];
+
+    svg
+      .append("circle")
+      .attr("cx", width - 100)
+      .attr("cy", 40)
+      .attr("r", 6)
+      .style("fill", on ? "#000000" : "#ffffff");
+    svg
+      .append("circle")
+      .attr("cx", width - 100)
+      .attr("cy", 60)
+      .attr("r", 6)
+      .style("fill", on ? "#4682B4" : "#ffffff");
+
+    svg
+      .append("text")
+      .attr("x", width - 85)
+      .attr("y", 44)
+      .text("Real R0")
+      .style("font-size", "14px")
+      .attr("alignment-baseline", "middle")
+      .style("fill", on ? "black" : "white");
+    svg
+      .append("text")
+      .attr("x", width - 85)
+      .attr("y", 64)
+      .text("Predicted R0")
+      .style("font-size", "14px")
+      .attr("alignment-baseline", "middle")
+      .style("fill", on ? "black" : "white");
 
     // x axis
     const x = d3
