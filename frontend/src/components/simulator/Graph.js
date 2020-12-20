@@ -4,12 +4,6 @@ import React, { useEffect, useState } from "react";
 export default function Graph({ bigdata }) {
   const ref = React.useRef(null);
 
-  let [on, setOn] = useState(false);
-  useEffect(() => {
-    if (bigdata[1].length === 0) setOn(false);
-    else setOn(true);
-  }, [bigdata]);
-
   const margin = {
     top: 10,
     right: 30,
@@ -37,13 +31,13 @@ export default function Graph({ bigdata }) {
       .attr("cx", width - 100)
       .attr("cy", 40)
       .attr("r", 6)
-      .style("fill", on ? "#000000" : "#ffffff");
+      .style("fill", bigdata[1].length !== 0 ? "#000000" : "#ffffff");
     svg
       .append("circle")
       .attr("cx", width - 100)
       .attr("cy", 60)
       .attr("r", 6)
-      .style("fill", on ? "#4682B4" : "#ffffff");
+      .style("fill", bigdata[1].length !== 0 ? "#4682B4" : "#ffffff");
 
     svg
       .append("text")
@@ -52,7 +46,7 @@ export default function Graph({ bigdata }) {
       .text("Real R0")
       .style("font-size", "14px")
       .attr("alignment-baseline", "middle")
-      .style("fill", on ? "black" : "white");
+      .style("fill", bigdata[1].length !== 0 ? "black" : "white");
     svg
       .append("text")
       .attr("x", width - 85)
@@ -60,7 +54,7 @@ export default function Graph({ bigdata }) {
       .text("Predicted R0")
       .style("font-size", "14px")
       .attr("alignment-baseline", "middle")
-      .style("fill", on ? "black" : "white");
+      .style("fill", bigdata[1].length !== 0 ? "black" : "white");
 
     // x axis
     const x = d3

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useReducer } from "react";
 import { reducer } from "./Reducer";
-import { policyFromList } from "./util";
+import { policyFromList } from "./Util";
 
 const Context = createContext(null);
 

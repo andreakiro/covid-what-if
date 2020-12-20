@@ -50,7 +50,7 @@ export default function Home() {
         <img
           className="rounded-md shadow w-1/2 mt-32"
           src="ressources/corona-virus-ab.jpg"
-          alt="IMAGE"
+          alt=""
         />
       </div>
     </div>

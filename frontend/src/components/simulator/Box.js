@@ -34,7 +34,7 @@ export default function Box() {
   useEffect(() => {
     let hide = true;
     for (let i = 0; i < state.order.length; i++) {
-      if (state.order[i] != 0) {
+      if (state.order[i] !== 0) {
         hide = false;
         break;
       }

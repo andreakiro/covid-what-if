@@ -38,7 +38,7 @@ export default function Policies() {
       content: unactives,
     });
     setMap(map);
-  }, [state.order]);
+  }, [state.order, state.policynames, dispatch]);
 
   return (
     <div className="flex flex-col space-y-2 py-2 w-full">
