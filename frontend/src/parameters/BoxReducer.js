@@ -1,4 +1,4 @@
-import { policyFromList } from "./util";
+import { policyFromList } from "./Util";
 
 function singleNegCycle(val) {
   return (val - 1) % 4;
@@ -145,30 +145,6 @@ export function policiesFromLevel(range, width, order, level) {
     }
     policies.push(pol);
   }
-  return policyFromList(policies);
-}
-
-export function policiesFromLevel2(range, width, order, level, oldPolicies) {
-  let policies = [];
-  let span = Math.floor(range / width);
-  for (let i = 0; i < 8; i++) {
-    let pol = [];
-    if (order[i] === 0) for (let j = 0; j < range; j++) pol.push(0);
-    else {
-      let index = 0;
-      let k = 0;
-      for (let j = 0; j < range; j++) {
-        index += 1;
-        pol.push(level[k]);
-        if (index === span) {
-          index = 0;
-          if (k < level.length - 1) k++; // not very good yet though......
-        }
-      }
-    }
-    policies.push(pol);
-  }
-
   return policyFromList(policies);
 }
 

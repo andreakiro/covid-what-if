@@ -1,9 +1,17 @@
 import React from "react";
 import { useParameters } from "../../parameters/ParameterProvider";
 
+function getKeyByValue(object, value) {
+  return Object.keys(object).find(key => object[key] === value);
+}
+
+function getIndexByPolicy(policynames, policy) {
+  let key = getKeyByValue(policynames, policy);
+  return parseInt(key.substring(1)) - 1;
+}
+
 export default function Selector({
   textselector,
-  items,
   sortItems,
   open,
   onOpen,
@@ -46,7 +54,7 @@ export default function Selector({
 
       <div
         className={`origin-top-right absolute z-10 right-0 mt-2 w-full rounded-md shadow-lg ${
-          open ? "" : "hidden"
+          open && state.unactives.length !== 0 ? "" : "hidden"
         }`}
       >
         <div
@@ -69,7 +77,7 @@ export default function Selector({
                     onClick={() => {
                       dispatch({
                         type: "policy-transform-add",
-                        relative: 4,
+                        relative: getIndexByPolicy(state.policynames, item),
                       });
                       onClose();
                     }}

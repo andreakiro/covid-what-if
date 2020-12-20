@@ -8,7 +8,7 @@ import {
   updatePolicies,
   updatePolicies2,
 } from "./BoxReducer";
-import { policyFromList, workingPolicies } from "./util";
+import { policyFromList, workingPolicies } from "./Util";
 
 export function initSession(state, action) {
   return {

@@ -1,5 +1,3 @@
-import { minus } from "../utilities/DateComparator";
-
 function cropArray(array, from, until) {
   return array;
 }
@@ -20,7 +18,7 @@ export function crop(policies, from, until) {
 export function workingPolicies(body) {
   let beta = 0;
   let usage = [];
-  let policies = Object.values(body)
+  let policies = Object.values(body);
   for (let i = 0; i < policies.length; i++) {
     let bool = false;
     let pol = policies[i];
@@ -70,33 +68,4 @@ export function levelFromOrder(level, order, width) {
     for (let j = 0; j < width; j++) newLevel[i * width + j] = level[index++];
   }
   return newLevel;
-}
-
-export function hey(setPolicies, level, width, height, from, until) {
-  let range = minus(from, until);
-
-  let policies2 = Array(height)
-    .fill(0)
-    .map(() => Array(range).fill(0));
-
-  policies2.forEach((pts, index) => {
-    let span = range / width;
-    for (let i = 0; i < pts.length; i++) {
-      if (index >= height) break;
-      pts[i] = level[index * width + Math.floor(i / span)];
-    }
-  });
-
-  let policies = [];
-  let span = range / width;
-  for (let i = 0; i < height; i++) {
-    let pts = [];
-    for (let j = 0; j < range; j++) {
-      if (i >= height) break;
-      pts.push(level[i * width + Math.floor(j / span)]);
-    }
-    policies.push(pts);
-  }
-
-  setPolicies(policyFromList(policies));
 }
