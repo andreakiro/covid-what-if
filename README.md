@@ -56,9 +56,12 @@ The first tools you need are [Node](https://nodejs.org/en/) and [NPM](https://ww
 In the `backend` directory, you can run the Flask server with:
 
 ```
-pipenv shell # this will start the python virtual environment
-FLASK_APP=api.py flask run # this will start the Flask server
+pipenv shell 
+FLASK_APP=api.py flask run
 ```
+
+First will start the python virtual environment. <br>
+Second will start the Flask server properly.
 
 The server will run on the port 5000.
 Open http://localhost:5000 to view it in the browser.
@@ -66,8 +69,8 @@ Open http://localhost:5000 to view it in the browser.
 You can use the following commands to close the server and reach back your shel any time :
 
 ```
-CMD+C # shut down the Flask server
-exit # close the virtual environment
+CMD+C
+exit
 ```
 
 ## Setup frontend : React
@@ -97,11 +100,12 @@ npm install tailwindcss postcss-cli autoprefixer -D
 Run a development version of the website running the following commands:
 
 ```
-npm start # in the frontend directory
-FLASK_APP=api.py flask run # in the backend directory
+npm start
+FLASK_APP=api.py flask run
 ```
 
-This command will also give you a link to the live site. The site will reload whenever you make changes to the files in the repository.
+First one in the `frontend` directory. <br>
+Second one in the `backend` directory.
 
 # Scripts
 
