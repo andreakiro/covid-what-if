@@ -51,7 +51,7 @@ See the corresponding READMEs to have a deeper understanding of the backend and 
 
 The first tools you need are [Node](https://nodejs.org/en/) and [NPM](https://www.npmjs.com/). `Node` allows us to execute Javascript files as scripts on a server or our own computer, instead of just a web browser. `NPM` allows us to install Javascript libraries and programs.
 
-## Setup backend : Flask server
+## Setup backend : Flask server
 
 In the `backend` directory, you can run the Flask server with:
 
