@@ -1,4 +1,4 @@
-const SERVER_ADDRESS = "http://localhost:5000";
+const SERVER_ADDRESS = process.env.REACT_APP_KEY;
 const INIT_SOCKET = "/init";
 const LOAD_SOCKET = "/load";
 const UPDATE_SOCKET = "/update";
