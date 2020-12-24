@@ -11,6 +11,7 @@ Here's a list of the different technologies used throughout the project, which m
 - [TailwindCSS](https://tailwindcss.com)
 - [D3JS](https://d3js.org)
 - [Flask](https://flask.palletsprojects.com/en/1.1.x/)
+- [NGINX](https://www.nginx.com)
 
 # General architecture
 
@@ -107,7 +108,7 @@ FLASK_APP=api.py flask run
 First one in the `frontend` directory. <br>
 Second one in the `backend` directory.
 
-# Scripts
+## Scripts
 
 To setup the development version faster, I wrote a tiny script that you can execute with:
 
@@ -122,6 +123,179 @@ Note also that you need to have the CLI ttab command. <br>
 If you have Node.js installed, just run `npm install -g ttab` <br>
 
 Refer to this [stackoverflow post](https://stackoverflow.com/questions/7171725/open-new-terminal-tab-from-command-line-mac-os-x) for more informations. If you can't manage to make it work, just start servers manually.
+
+# Deployment
+
+## Domain Name
+
+The domain : [`covid-what-if.io`](https://covid-what-if.io) comes from GoDaddy.
+
+If you want to transfer property ask to @AP.
+
+## Server
+
+As we do not have a powerfull server at the moment, the website is running on
+the personal AP's EC2 Amazon instance. This is sufficient for small usage and
+low number of visitors, but need to be changed if we aim to scale the website 
+and its audience.
+
+Nevertheless, it's not difficult to transfer the code to another server.
+
+### Architecture
+
+The architecture is quite easy. Let me explain :
+
+```
+.
+├── ...
+├── etc
+│   ├── ...
+│   ├── nginx
+│   ├── ...
+├── ...
+├── home
+│   └── ec2-user
+│       ├── ...
+│       ├── covid
+│       └── ...
+├── ...
+└── var
+    ├── ...
+    ├── covid-what-if
+    │   ├── asset-manifest.json
+    │   ├── index.html
+    │   ├── precache-manifest.c6f7a2c2db12e50ebd9642c7ac5cd93b.js
+    │   ├── ressources
+    │   ├── robots.txt
+    │   ├── service-worker.js
+    │   └── static
+    ├── ...
+```
+
+In the `etc` directory, we have the `nginx` configurations. I'll explain later.
+
+The `home` directory is quite explicit. `covid` directory is the project's code.
+
+In the `var` directory, we have a `covid-what-if` directory where we have to put all the static files.
+In other words, when you build your project (frontend-part), you have to copy build/. inside this directory.
+I'll come back to the procedure later.
+
+## NGINX
+
+To serve the website, I use [NGINX](https://www.nginx.com).
+
+Now that you know that, let's have a deeper look to the `nginx` directory and the configuration files :
+
+```
+.
+├── etc
+│   ├── ...
+│   ├── nginx
+│   │   ├── ...
+│   │   ├── nginx.conf
+│   │   └── ...
+│   └── ...
+└── ...
+```
+
+The only file we are intersted in is the `nginx.conf` one :
+
+```
+http {
+
+include /etc/nginx/mime.types;
+server {
+  server_name covid-what-if.io www.covid-what-if.io;
+
+  location /api/ {
+    proxy_pass http://localhost:8080/;
+  }
+
+  location / {
+    root /var/covid-what-if;
+  }
+
+    listen [::]:443 ssl ipv6only=on; # managed by Certbot
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/covid-what-if.io/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/covid-what-if.io/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+
+server {
+    if ($host = www.covid-what-if.io) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = covid-what-if.io) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+  listen 80;
+  listen [::]:80;
+  server_name covid-what-if.io www.covid-what-if.io;
+    return 404; # managed by Certbot
+}
+}
+events {}
+```
+
+### Important
+
+If you do any changes into this `nginx.conf` you have to reload NGINX :
+
+```
+sudo nginx -s reload
+```
+
+## Deploy new frontend
+
+Whenever you are satisfied with modifications on your local website and want to push it online.
+Follow this simple procedure :
+
+- Push to your Git
+- SSH into the server
+- Pull from your Git
+- Build the frontend code
+- Copy the built files into `/var/covid-what-if`
+
+In short, when you are into the server, run the following :
+
+```
+cd covid
+cd frontend
+npm run build
+sudo cp -r build/. /var/covid-what-if
+```
+
+## Deploy new backend
+
+The backend is constantly running on port 8080.
+If you do any updates on the backend files and want to push them online. 
+Follow this simple procedure :
+
+- Pull from your Git
+- Kill the running PID (current backend instance on port 8080)
+- Start a new Flask app on a new PID
+
+In short, when you are into the server, run the following :
+
+```
+ps -aux | grep python
+kill PID
+FLASK_APP=api.py flask run --port 8080 1>/dev/null 2>/dev/null &
+```
+
+## HTTPS
+
+The website is encrypted with HTTPS. I used [certbot](https://certbot.eff.org) to do that.
+
+It need to be renewed every year but it is very easy and overall : free.
 
 # Contributions
 
