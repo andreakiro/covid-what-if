@@ -245,7 +245,7 @@ server {
 events {}
 ```
 
-### Important
+### Important
 
 If you do any changes into this `nginx.conf` you have to reload NGINX :
 
