@@ -101,16 +101,17 @@ export function mutateMore(state, action) {
   let newOrder = [];
   let oldHeight = state.box.height;
   for (let i = 0; i < 8; i++) {
-    if (i === action.relative) newOrder[i] = 1;
+    if (i === action.index) newOrder[i] = 1;
     else newOrder[i] = state.order[i];
   }
 
-  let delay = 0;
-  for (let i = 0; i < state.box.level.length + state.box.width; i++) {
-    if (Math.floor(i / state.box.width) === action.relative) {
-      newLevel.push(0);
-      delay = 1;
-    } else newLevel.push(state.box.level[i - state.box.width * delay]);
+  let levelIndex = 0;
+  for (let i = 0; i < state.order.length; i++) {
+    if (state.order[i] === 0 && i !== action.index) continue;
+    for (let j = 0; j < state.box.width; j++) {
+      if (i === action.index) newLevel.push(0);
+      else newLevel.push(state.box.level[levelIndex++]);
+    }
   }
 
   return {

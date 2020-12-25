@@ -77,7 +77,7 @@ export default function Selector({
                     onClick={() => {
                       dispatch({
                         type: "policy-transform-add",
-                        relative: getIndexByPolicy(state.policynames, item),
+                        index: getIndexByPolicy(state.policynames, item),
                       });
                       onClose();
                     }}
