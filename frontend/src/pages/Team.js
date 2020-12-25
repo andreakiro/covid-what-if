@@ -35,43 +35,44 @@ export default function Team() {
       <Teammate
         fullName="Martin Jaggi"
         link="https://people.epfl.ch/martin.jaggi"
-        picture="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+        picture="/ressources/team/jaggi.jpg"
       />
       <Teammate
         fullName="Mary-Anne Hartley"
         link="https://people.epfl.ch/mary-anne.hartley"
-        picture="https://people.epfl.ch/private/common/photos/links/204167.jpg?ts=1603027015"
+        picture="/ressources/team/hartley.jpg"
       />
       <Teammate
         fullName="Prakhar Gupta"
         link="https://people.epfl.ch/prakhar.gupta"
-        picture="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+        picture="/ressources/team/gupta.jpg"
       />
       <Teammate
         fullName=" Thierry Bossy"
-        link="https://people.epfl.ch/thierry.bossy"
-        picture="https://media-exp1.licdn.com/dms/image/C4D03AQEiZTE3yMYTYg/profile-displayphoto-shrink_400_400/0?e=1608768000&v=beta&t=0p2-Wluph6wDc1o7hHcwfy5o9-kvnTLCNaPn2Ur3vj8"
+        link="https://www.linkedin.com/in/thierry-bossy/"
+        picture="/ressources/team/bossy.jpeg"
       />
 
       <Teammate
         fullName="Andrea Pinto"
         link="https://linkedin.com/in/pinto-andrea/"
-        picture="https://media-exp1.licdn.com/dms/image/C5603AQFVsBf9AHAsEA/profile-displayphoto-shrink_400_400/0?e=1608768000&v=beta&t=xiCW7YraTUloPx4sZxW0EzS3FAnXZK4I28a5ylpju6k"
+        picture="/ressources/team/pinto.jpg"
       />
 
       <Teammate
         fullName=" Lucas Massemin"
-        link="https://people.epfl.ch/lucas.massemin"
-        picture="https://media-exp1.licdn.com/dms/image/C5603AQF0U8qYYKD9sw/profile-displayphoto-shrink_400_400/0?e=1608768000&v=beta&t=Iu7_OLz0xCwfbKLtVKIpvQAqL5wFPVJkYhy5mqLr29Q"
+        link="https://www.linkedin.com/in/lucas-massemin-65554815a/"
+        picture="/ressources/team/massemin.jpeg"
       />
       <Teammate
         fullName="Kimia Hemmatirad"
-        picture="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+        link="https://www.linkedin.com/in/kimiahemmatirad/"
+        picture="ressources/team/hemmatirad.jpeg"
       />
       <Teammate
         fullName="Pablo Canas"
-        link="https://people.epfl.ch/pablo.canas"
-        picture="https://media-exp1.licdn.com/dms/image/C5603AQFiFNmvbRiotA/profile-displayphoto-shrink_400_400/0?e=1608768000&v=beta&t=lGLgUMjtWip8YCXWhoo9sDDMks66GdPu0wYxrPy0Mas"
+        link="https://www.linkedin.com/search/results/all/?keywords=pablo%20canas&origin=GLOBAL_SEARCH_HEADER"
+        picture="/ressources/team/canas.jpeg"
       />
     </div>
   );
