@@ -177,7 +177,7 @@ export default function Inputs() {
       </div>
 
       <InputButton
-        text="Demographics"
+        text="How it works?"
         setLock={setLock}
         animation={false}
         modal={true}

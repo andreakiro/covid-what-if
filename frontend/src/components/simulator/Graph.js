@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 export default function Graph({ bigdata }) {
   const ref = React.useRef(null);

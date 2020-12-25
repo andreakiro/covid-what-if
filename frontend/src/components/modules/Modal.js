@@ -22,12 +22,20 @@ export default function Modal({ title, open, onClose }) {
                 >
                   {title}
                 </h3>
-                <div className="flex flex-col space-y-0 mt-2">
+                <div className="flex flex-col space-y-2 mt-2">
                   <p className="text-sm leading-5 text-gray-500">
-                    We will add some informations and inputs here.
+                    <span className="font-bold text-base">1. </span>Choose a
+                    COUNTRY from the list. This will load all historical R0 data
+                    of COVID-19, as well as the policies in place. But also a
+                    simulated R0 value, predicted by our ML model.
                   </p>
                   <p className="text-sm leading-5 text-gray-500">
-                    We will add some informations and inputs here.
+                    <span className="font-bold text-base">2. </span>Play with
+                    the POLICIES and see how the prediction evolves. You can
+                    either add/remove policies, either change their stringencies
+                    over time by clicking on the blue boxes. Note that you can
+                    also reframe the graph by updating the TIME FRAME
+                    fields.
                   </p>
                 </div>
               </div>
